@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "elecrun": "elecrun",
     "dev": "elecrun --vite",
     "build": "elecrun build",
     "clean": "elecrun clean"

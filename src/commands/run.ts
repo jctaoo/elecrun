@@ -50,15 +50,23 @@ async function buildComplete(dir: string, count: number) {
 
 // =============== run electron end ===============
 
-export async function run({ withVite = false }: { withVite: boolean }) {
+export async function run(options: {
+  withVite: boolean;
+  preloadScript?: string;
+}) {
+  const { withVite, preloadScript } = options;
+
   // Start vite server
   if (withVite) {
     await startViteServer(DefaultPath.shard.viteConfigPath);
   }
   // Start dev for main process
   await runESBuildForMainProcess(
-    false,
-    DefaultPath.shard.devOutPath,
+    {
+      isBuild: false,
+      outDir: DefaultPath.shard.devOutPath,
+      preloadScript,
+    },
     reportError,
     buildStart,
     buildComplete,

@@ -21,6 +21,10 @@ export class DefaultPath {
     return path.join(this.cwd, './node_modules');
   }
 
+  public get packageJsonPath() {
+    return path.join(this.cwd, './package.json');
+  }
+
   public get devOutPath() {
     return path.join(this.nodeModulesPath, '.electron-run/app');
   }

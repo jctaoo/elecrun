@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
+import { add } from './add';
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -10,6 +11,7 @@ function createWindow() {
     },
   });
 
+  console.log("1 + 1 =", add(1, 1));
   win.loadURL('http://localhost:3000').then();
 }
 

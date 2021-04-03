@@ -2,15 +2,7 @@ import * as fs from 'fs';
 import { join, resolve } from 'path';
 
 import { DefaultPath } from '../common';
-
-async function exists(path: fs.PathLike): Promise<boolean> {
-  try {
-    await fs.promises.stat(path);
-    return true;
-  } catch {
-    return false;
-  }
-}
+import { exists } from '../utils';
 
 async function rmRecursively(path: string, excludes?: Array<string>) {
   if (!(await exists(path))) {

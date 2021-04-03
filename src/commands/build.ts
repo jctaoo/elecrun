@@ -8,10 +8,15 @@ import {
 
 import { runESBuildForMainProcess } from './esbuild';
 
-export async function runBuild() {
+export async function runBuild(options: { preloadScript?: string }) {
+  const { preloadScript } = options;
+
   await runESBuildForMainProcess(
-    true,
-    DefaultPath.shard.outDir,
+    {
+      isBuild: true,
+      outDir: DefaultPath.shard.outDir,
+      preloadScript,
+    },
     (...errors) => diagnose(...errors),
     () => console.log(startMessage),
     () => {},

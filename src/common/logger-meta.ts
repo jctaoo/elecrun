@@ -7,6 +7,8 @@ export const consoleViteMessagePrefix = '[vite]';
 
 export const cannotFoundTSConfigMessage =
   "Could not find a valid 'tsconfig.json'.";
+export const cannotFoundPackageJsonMessage =
+  "Could not find a valid 'package.json'.";
 export const startMessage = chalk.cyan(
   `${consoleMessagePrefix} Start compile main process...`
 );
@@ -16,3 +18,4 @@ export const finishMessage = chalk.green(
 export const finishBuildMessage = chalk.green(
   `${consoleMessagePrefix} Finish Build.`
 );
+export const warnPreloadMessage = `warn preload path.`;

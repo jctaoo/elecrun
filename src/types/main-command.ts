@@ -1,8 +1,11 @@
 import { CompileError } from '../common';
 
 export type MainCommand = (
-  isBuild: boolean,
-  outDir: string,
+  options: {
+    isBuild: boolean;
+    outDir: string;
+    preloadScript?: string;
+  },
   reportError: (...errs: CompileError[]) => void,
   buildStart: () => void,
   buildComplete: (dir: string, count: number) => void,

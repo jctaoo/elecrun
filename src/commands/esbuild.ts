@@ -3,12 +3,18 @@
  */
 
 import fs from 'fs';
-import path from 'path';
+import path, { join, resolve } from 'path';
 
 import * as esbuild from 'esbuild';
 
-import { CompileError, DefaultPath } from '../common';
+import {
+  CompileError,
+  DefaultPath,
+  notFoundPackageJson,
+  warnPreloadMessage,
+} from '../common';
 import { MainCommand } from '../types';
+import { exists, walk } from '../utils';
 
 function transformErrors(error: esbuild.BuildFailure): CompileError[] {
   return error.errors.map(
@@ -21,9 +27,38 @@ function transformErrors(error: esbuild.BuildFailure): CompileError[] {
   );
 }
 
+async function findExternal(): Promise<string[]> {
+  // find package.json
+  if (!(await exists(DefaultPath.shard.packageJsonPath))) {
+    notFoundPackageJson();
+  }
+
+  const externals: Set<string> = new Set();
+  const keys = ['dependencies', 'devDependencies', 'peerDependencies'];
+  const pkg = await import(DefaultPath.shard.packageJsonPath);
+
+  for (const key of keys) {
+    const obj = pkg[key] ?? {};
+    for (const name of Object.keys(obj)) {
+      externals.add(name);
+    }
+  }
+
+  // find node_modules
+  if (await exists(DefaultPath.shard.nodeModulesPath)) {
+    const children = await fs.promises.readdir(
+      DefaultPath.shard.nodeModulesPath
+    );
+    for (const child of children) {
+      externals.add(child);
+    }
+  }
+
+  return Array.from(externals);
+}
+
 export const runESBuildForMainProcess: MainCommand = async (
-  isBuild,
-  outDir,
+  { isBuild, outDir, preloadScript },
   reportError,
   _buildStart,
   buildComplete,
@@ -35,11 +70,26 @@ export const runESBuildForMainProcess: MainCommand = async (
   }
 
   let count = 0;
+  const externals = await findExternal();
+
+  const entryPoints = [DefaultPath.shard.entryPath];
+  if (preloadScript) {
+    if (!/^.*\.(js|ts|jsx|tsx)$/.test(preloadScript)) {
+      console.log(warnPreloadMessage);
+    }
+    const preloadScriptPath = path.join(
+      DefaultPath.shard.mainPath,
+      preloadScript
+    );
+    if (await exists(preloadScriptPath)) {
+      entryPoints.push(preloadScriptPath);
+    }
+  }
 
   try {
     await esbuild.build({
       outdir: outDir,
-      entryPoints: [DefaultPath.shard.entryPath],
+      entryPoints: entryPoints,
       tsconfig: tsconfigPath,
       format: 'cjs',
       logLevel: 'silent',
@@ -47,6 +97,8 @@ export const runESBuildForMainProcess: MainCommand = async (
       incremental: !isBuild,
       platform: 'node',
       sourcemap: true,
+      bundle: true,
+      external: externals,
       watch: !isBuild
         ? {
             onRebuild: async (error) => {
