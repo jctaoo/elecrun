@@ -1,5 +1,5 @@
 import {
-  DefaultPath,
+  PathManager,
   diagnose,
   finishBuildMessage,
   notFoundTSConfig,
@@ -14,7 +14,7 @@ export async function runBuild(options: { preloadScript?: string }) {
   await runESBuildForMainProcess(
     {
       isBuild: true,
-      outDir: DefaultPath.shard.outDir,
+      outDir: PathManager.shard.outDir,
       preloadScript,
     },
     (...errors) => diagnose(...errors),

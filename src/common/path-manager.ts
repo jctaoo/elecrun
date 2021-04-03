@@ -1,10 +1,10 @@
 import path from 'path';
 
-export class DefaultPath {
-  public static readonly shard = new DefaultPath();
+export class PathManager {
+  public static readonly shard = new PathManager();
 
-  public static from(cwd: string): DefaultPath {
-    return new DefaultPath(cwd);
+  public static from(cwd: string): PathManager {
+    return new PathManager(cwd);
   }
 
   public cwd: string;
@@ -15,6 +15,34 @@ export class DefaultPath {
     } else {
       this.cwd = process.cwd();
     }
+  }
+
+  /**
+   * Only valid during the development phase
+   */
+  private _preloadScriptPath?: string;
+
+  /**
+   * Only valid during the development phase
+   * @see setPreloadScriptPath
+   */
+  public get preloadSourceMapPath(): string | undefined {
+    if (!this._preloadScriptPath) {
+      return undefined;
+    }
+    const basename = path.basename(
+      this._preloadScriptPath,
+      path.extname(this._preloadScriptPath)
+    );
+    return path.join(this.devOutPath, basename + ".js.map");
+  }
+
+  /**
+   * Only valid during the development phase
+   * @see preloadSourceMapPath
+   */
+  public setPreloadScriptPath(path: string | undefined) {
+    this._preloadScriptPath = path;
   }
 
   public get nodeModulesPath() {

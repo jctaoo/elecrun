@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { Plugin } from 'vite';
 
-import { consoleViteMessagePrefix, DefaultPath } from '../common';
+import { consoleViteMessagePrefix, PathManager } from '../common';
 
 // TODO 打印 vite 错误
 export function LoggerPlugin(): Plugin {
@@ -10,7 +10,7 @@ export function LoggerPlugin(): Plugin {
     handleHotUpdate: (ctx) => {
       for (const file of ctx.modules) {
         if (!file.file) continue;
-        const path = file.file.replace(DefaultPath.shard.srcPath, '');
+        const path = file.file.replace(PathManager.shard.srcPath, '');
         console.log(
           chalk.yellow(consoleViteMessagePrefix),
           chalk.yellow('hmr update'),

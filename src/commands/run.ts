@@ -3,7 +3,7 @@ import { fetchAsyncQuestionPropertyQuestionProperty } from 'inquirer/lib/utils/u
 
 import {
   CompileError,
-  DefaultPath,
+  PathManager,
   diagnose,
   notFoundTSConfig,
 } from '../common';
@@ -58,13 +58,13 @@ export async function run(options: {
 
   // Start vite server
   if (withVite) {
-    await startViteServer(DefaultPath.shard.viteConfigPath);
+    await startViteServer(PathManager.shard.viteConfigPath);
   }
   // Start dev for main process
   await runESBuildForMainProcess(
     {
       isBuild: false,
-      outDir: DefaultPath.shard.devOutPath,
+      outDir: PathManager.shard.devOutPath,
       preloadScript,
     },
     reportError,

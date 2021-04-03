@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { join, resolve } from 'path';
 
-import { DefaultPath } from '../common';
+import { PathManager } from '../common';
 import { exists } from '../utils';
 
 async function rmRecursively(path: string, excludes?: Array<string>) {
@@ -52,11 +52,11 @@ async function rmRecursively(path: string, excludes?: Array<string>) {
 }
 
 export async function clean() {
-  rmRecursively(DefaultPath.shard.devOutPath).then();
-  rmRecursively(DefaultPath.shard.outDir, [
+  rmRecursively(PathManager.shard.devOutPath).then();
+  rmRecursively(PathManager.shard.outDir, [
     'package.json',
     'yarn.lock',
     'package-lock.json',
   ]).then();
-  rmRecursively(DefaultPath.shard.distDir).then();
+  rmRecursively(PathManager.shard.distDir).then();
 }

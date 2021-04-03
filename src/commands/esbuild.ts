@@ -9,7 +9,7 @@ import * as esbuild from 'esbuild';
 
 import {
   CompileError,
-  DefaultPath,
+  PathManager,
   notFoundPackageJson,
   warnPreloadMessage,
 } from '../common';
@@ -29,13 +29,13 @@ function transformErrors(error: esbuild.BuildFailure): CompileError[] {
 
 async function findExternal(): Promise<string[]> {
   // find package.json
-  if (!(await exists(DefaultPath.shard.packageJsonPath))) {
+  if (!(await exists(PathManager.shard.packageJsonPath))) {
     notFoundPackageJson();
   }
 
   const externals: Set<string> = new Set();
   const keys = ['dependencies', 'devDependencies', 'peerDependencies'];
-  const pkg = await import(DefaultPath.shard.packageJsonPath);
+  const pkg = await import(PathManager.shard.packageJsonPath);
 
   for (const key of keys) {
     const obj = pkg[key] ?? {};
@@ -45,9 +45,9 @@ async function findExternal(): Promise<string[]> {
   }
 
   // find node_modules
-  if (await exists(DefaultPath.shard.nodeModulesPath)) {
+  if (await exists(PathManager.shard.nodeModulesPath)) {
     const children = await fs.promises.readdir(
-      DefaultPath.shard.nodeModulesPath
+      PathManager.shard.nodeModulesPath
     );
     for (const child of children) {
       externals.add(child);
@@ -64,7 +64,7 @@ export const runESBuildForMainProcess: MainCommand = async (
   buildComplete,
   notFoundTSConfig
 ) => {
-  const tsconfigPath = path.join(DefaultPath.shard.mainPath, 'tsconfig.json');
+  const tsconfigPath = path.join(PathManager.shard.mainPath, 'tsconfig.json');
   if (!fs.existsSync(tsconfigPath)) {
     notFoundTSConfig();
   }
@@ -72,17 +72,21 @@ export const runESBuildForMainProcess: MainCommand = async (
   let count = 0;
   const externals = await findExternal();
 
-  const entryPoints = [DefaultPath.shard.entryPath];
+  const entryPoints = [PathManager.shard.entryPath];
   if (preloadScript) {
     if (!/^.*\.(js|ts|jsx|tsx)$/.test(preloadScript)) {
       console.log(warnPreloadMessage);
     }
     const preloadScriptPath = path.join(
-      DefaultPath.shard.mainPath,
+      PathManager.shard.mainPath,
       preloadScript
     );
     if (await exists(preloadScriptPath)) {
       entryPoints.push(preloadScriptPath);
+      // Only valid during the development phase
+      if (!isBuild) {
+        PathManager.shard.setPreloadScriptPath(preloadScriptPath);
+      }
     }
   }
 
