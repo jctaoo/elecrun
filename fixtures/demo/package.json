@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "elecrun": "elecrun",
-    "dev": "elecrun --vite",
+    "dev": "elecrun --vite --preload preload.ts",
     "build": "elecrun build",
     "clean": "elecrun clean"
   },

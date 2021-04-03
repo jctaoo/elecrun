@@ -8,11 +8,14 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 
-  console.log("1 + 1 =", add(1, 1));
+  console.log('1 + 1 =', add(1, 1));
   win.loadURL('http://localhost:3000').then();
+  win.webContents.openDevTools({ mode: 'detach' });
 }
 
 app.whenReady().then(() => {
