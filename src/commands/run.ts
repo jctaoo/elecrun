@@ -1,3 +1,6 @@
+import inquirer from 'inquirer';
+import { fetchAsyncQuestionPropertyQuestionProperty } from 'inquirer/lib/utils/utils';
+
 import {
   CompileError,
   DefaultPath,
@@ -5,6 +8,7 @@ import {
   notFoundTSConfig,
 } from '../common';
 import { finishMessage, startMessage } from '../common';
+import { prompt } from '../common/prompt';
 
 import { runESBuildForMainProcess } from './esbuild';
 import { startElectron } from './run-electron';
@@ -18,15 +22,33 @@ function buildStart() {
   console.log(startMessage);
 }
 
-let stopElectron: () => void = async () => {
-  console.log('default stop');
-};
+// =============== run electron start ===============
 
-async function buildComplete(dir: string) {
-  console.log(finishMessage);
+let stopElectron: () => void = () => {};
+let stopPromptToRunElectron: () => void = () => {};
+
+async function runElectron(dir: string) {
   stopElectron();
   [, stopElectron] = await startElectron({ path: dir });
 }
+
+async function buildComplete(dir: string, count: number) {
+  stopPromptToRunElectron();
+  console.log(finishMessage);
+
+  if (count > 1) {
+    const [readAnswer, stop] = prompt('Need rerun Electron?');
+    stopPromptToRunElectron = stop;
+
+    if (await readAnswer()) {
+      await runElectron(dir);
+    }
+  } else {
+    await runElectron(dir);
+  }
+}
+
+// =============== run electron end ===============
 
 export async function run({ withVite = false }: { withVite: boolean }) {
   // Start vite server

@@ -34,6 +34,8 @@ export const runESBuildForMainProcess: MainCommand = async (
     notFoundTSConfig();
   }
 
+  let count = 0;
+
   try {
     await esbuild.build({
       outdir: outDir,
@@ -45,19 +47,22 @@ export const runESBuildForMainProcess: MainCommand = async (
       incremental: !isBuild,
       platform: 'node',
       sourcemap: true,
-      watch: !isBuild ? {
-        onRebuild: async (error) => {
-          if (error) {
-            reportError(...transformErrors(error));
-          } else {
-            buildComplete(outDir);
+      watch: !isBuild
+        ? {
+            onRebuild: async (error) => {
+              if (error) {
+                reportError(...transformErrors(error));
+              } else {
+                count++;
+                buildComplete(outDir, count);
+              }
+            },
           }
-        },
-      } : false,
+        : false,
     });
-    buildComplete(outDir);
+    count++;
+    buildComplete(outDir, count);
   } catch (e) {
-    console.log(e)
     if (!!e.errors && !!e.errors.length && e.errors.length > 0) {
       const error = e as esbuild.BuildFailure;
       reportError(...transformErrors(error));
