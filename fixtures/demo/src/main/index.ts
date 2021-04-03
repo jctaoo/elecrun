@@ -11,27 +11,6 @@ function createWindow() {
   });
 
   win.loadURL('http://localhost:3000').then();
-  console.log("Hello World");
-  console.log("Hello World");
-  console.log("Hello World");
-  console.log("Hello World");
-  console.log("Hello World");
-  console.log("Hello World");
-  console.log("Hello World");
-  console.log("Hello World");
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
-  console.log("Hello World")
 }
 
 app.whenReady().then(() => {

@@ -1,8 +1,10 @@
 import { CompileError } from '../common';
 
-export type MainWatch = (
+export type MainCommand = (
+  isBuild: boolean,
+  outDir: string,
   reportError: (...errs: CompileError[]) => void,
   buildStart: () => void,
   buildComplete: (dir: string) => void,
   notFoundTSConfig: () => void
-) => void;
+) => Promise<void>;

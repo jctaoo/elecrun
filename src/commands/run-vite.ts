@@ -5,6 +5,7 @@ import { consoleViteMessagePrefix } from '../common';
 import { LoggerPlugin } from '../utils';
 
 export async function startViteServer(configPath: string) {
+  // TODO check configPath not exits
   const server = await createServer({
     configFile: `${configPath}.ts`,
     logLevel: 'silent',

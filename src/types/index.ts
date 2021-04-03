@@ -1,1 +1,1 @@
-export { MainWatch } from './main-watch';
+export { MainCommand } from './main-command';

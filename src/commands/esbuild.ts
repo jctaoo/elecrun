@@ -8,8 +8,7 @@ import path from 'path';
 import * as esbuild from 'esbuild';
 
 import { CompileError, DefaultPath } from '../common';
-import { MainWatch } from '../types';
-import { delay } from '../utils';
+import { MainCommand } from '../types';
 
 function transformErrors(error: esbuild.BuildFailure): CompileError[] {
   return error.errors.map(
@@ -22,7 +21,9 @@ function transformErrors(error: esbuild.BuildFailure): CompileError[] {
   );
 }
 
-export const esbuildWatchMainProcess: MainWatch = async (
+export const runESBuildForMainProcess: MainCommand = async (
+  isBuild,
+  outDir,
   reportError,
   _buildStart,
   buildComplete,
@@ -35,28 +36,28 @@ export const esbuildWatchMainProcess: MainWatch = async (
 
   try {
     await esbuild.build({
-      outdir: DefaultPath.shard.devOutPath,
+      outdir: outDir,
       entryPoints: [DefaultPath.shard.entryPath],
       tsconfig: tsconfigPath,
       format: 'cjs',
       logLevel: 'silent',
       logLimit: 0,
-      incremental: true,
+      incremental: !isBuild,
       platform: 'node',
       sourcemap: true,
-      watch: {
+      watch: !isBuild ? {
         onRebuild: async (error) => {
-          await delay(2000);
           if (error) {
             reportError(...transformErrors(error));
           } else {
-            buildComplete(DefaultPath.shard.devOutPath);
+            buildComplete(outDir);
           }
         },
-      },
+      } : false,
     });
-    buildComplete(DefaultPath.shard.devOutPath);
+    buildComplete(outDir);
   } catch (e) {
+    console.log(e)
     if (!!e.errors && !!e.errors.length && e.errors.length > 0) {
       const error = e as esbuild.BuildFailure;
       reportError(...transformErrors(error));

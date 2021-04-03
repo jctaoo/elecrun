@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "elecrun --vite"
+    "dev": "elecrun --vite",
+    "build": "elecrun build"
   },
   "devDependencies": {
     "vite": "^2.1.5"
