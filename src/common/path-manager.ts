@@ -34,7 +34,7 @@ export class PathManager {
       this._preloadScriptPath,
       path.extname(this._preloadScriptPath)
     );
-    return path.join(this.devOutPath, basename + ".js.map");
+    return path.join(this.devOutPath, basename + '.js.map');
   }
 
   /**

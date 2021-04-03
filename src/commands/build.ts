@@ -1,8 +1,8 @@
 import {
-  PathManager,
   diagnose,
   finishBuildMessage,
   notFoundTSConfig,
+  PathManager,
   startMessage,
 } from '../common';
 

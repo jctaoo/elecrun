@@ -3,18 +3,18 @@
  */
 
 import fs from 'fs';
-import path, { join, resolve } from 'path';
+import path from 'path';
 
 import * as esbuild from 'esbuild';
 
 import {
   CompileError,
-  PathManager,
   notFoundPackageJson,
+  PathManager,
   warnPreloadMessage,
 } from '../common';
 import { MainCommand } from '../types';
-import { exists, walk } from '../utils';
+import { exists } from '../utils';
 
 function transformErrors(error: esbuild.BuildFailure): CompileError[] {
   return error.errors.map(

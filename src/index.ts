@@ -8,7 +8,7 @@ const program = new commander.Command(pkg.name).version(pkg.version);
 
 program
   .command('dev', { isDefault: true })
-  .description("⚡️Start to dev your electron app.")
+  .description('⚡️Start to dev your electron app.')
   .option('--vite', 'The flag indicates whether to open the vite server.')
   .option(
     '--preload <file>',
@@ -21,7 +21,7 @@ program
 
 program
   .command('build')
-  .description("Build your Electron main process code in main src.")
+  .description('Build your Electron main process code in main src.')
   .option(
     '--preload <file>',
     "Electron preload filer relative to the main src. Won't be bundled."

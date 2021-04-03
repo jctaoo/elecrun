@@ -1,11 +1,8 @@
-import inquirer from 'inquirer';
-import { fetchAsyncQuestionPropertyQuestionProperty } from 'inquirer/lib/utils/utils';
-
 import {
   CompileError,
-  PathManager,
   diagnose,
   notFoundTSConfig,
+  PathManager,
 } from '../common';
 import { finishMessage, startMessage } from '../common';
 import { prompt } from '../common/prompt';
