@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/main/index.ts"],
-  "sourcesContent": ["import { app, BrowserWindow } from 'electron';\nimport path from 'path';\n\nfunction createWindow() {\n  const win = new BrowserWindow({\n    width: 800,\n    height: 600,\n    webPreferences: {\n      preload: path.join(__dirname, 'preload.js'),\n    },\n  });\n\n  win.loadURL('http://localhost:3000').then();\n}\n\napp.whenReady().then(() => {\n  createWindow();\n\n  app.on('activate', () => {\n    if (BrowserWindow.getAllWindows().length === 0) {\n      createWindow();\n    }\n  });\n});\n\napp.on('window-all-closed', () => {\n  if (process.platform !== 'darwin') {\n    app.quit();\n  }\n});\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA,sBAAmC;AACnC,kBAAiB;AAEjB,wBAAwB;AACtB,QAAM,MAAM,IAAI,8BAAc;AAAA,IAC5B,OAAO;AAAA,IACP,QAAQ;AAAA,IACR,gBAAgB;AAAA,MACd,SAAS,oBAAK,KAAK,WAAW;AAAA;AAAA;AAIlC,MAAI,QAAQ,yBAAyB;AAAA;AAGvC,oBAAI,YAAY,KAAK,MAAM;AACzB;AAEA,sBAAI,GAAG,YAAY,MAAM;AACvB,QAAI,8BAAc,gBAAgB,WAAW,GAAG;AAC9C;AAAA;AAAA;AAAA;AAKN,oBAAI,GAAG,qBAAqB,MAAM;AAChC,MAAI,QAAQ,aAAa,UAAU;AACjC,wBAAI;AAAA;AAAA;",
-  "names": []
-}

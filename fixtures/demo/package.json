@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "elecrun --vite",
-    "build": "elecrun build"
+    "build": "elecrun build",
+    "clean": "elecrun clean"
   },
   "devDependencies": {
     "vite": "^2.1.5"
