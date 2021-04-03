@@ -19,7 +19,7 @@
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:lint": "eslint src --ext .ts --fix",
-    "test": "run-s build test:*",
+    "test": "xvfb-maybe run-s build test:*",
     "test:lint": "eslint src --ext .ts",
     "test:prettier": "prettier \"src/**/*.ts\" --list-different",
     "test:unit": "nyc --silent ava",
@@ -44,7 +44,6 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^7.2.0",
-    "electron": "^12.0.2",
     "esbuild": "^0.11.3",
     "process-exists": "^4.0.0",
     "vite": "^2.1.5"
@@ -60,6 +59,7 @@
     "codecov": "^3.5.0",
     "cspell": "^4.1.0",
     "cz-conventional-changelog": "^3.3.0",
+    "electron": "^12.0.2",
     "eslint": "^7.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
