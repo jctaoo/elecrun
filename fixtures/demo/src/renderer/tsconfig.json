@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "vite/client"
+    ]
+  },
+  "include": [
+    "../renderer/**/*",
+    "../common/**/*"
+  ],
+  "exclude": [
+    "../main/**/*"
+  ]
+}

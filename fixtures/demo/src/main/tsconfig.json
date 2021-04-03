@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "CommonJS",
+    "outDir": "../../app"
+  },
+  "include": [
+    "../main/**/*",
+    "../common/**/*"
+  ],
+  "exclude": [
+    "../renderer/**/*"
+  ]
+}
