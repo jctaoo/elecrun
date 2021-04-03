@@ -35,7 +35,7 @@ export const esbuildWatchMainProcess: MainWatch = async (
 
   try {
     await esbuild.build({
-      outdir: DefaultPath.shard.outDir,
+      outdir: DefaultPath.shard.devOutPath,
       entryPoints: [DefaultPath.shard.entryPath],
       tsconfig: tsconfigPath,
       format: 'cjs',
@@ -50,12 +50,12 @@ export const esbuildWatchMainProcess: MainWatch = async (
           if (error) {
             reportError(...transformErrors(error));
           } else {
-            buildComplete(DefaultPath.shard.outDir);
+            buildComplete(DefaultPath.shard.devOutPath);
           }
         },
       },
     });
-    buildComplete(DefaultPath.shard.outDir);
+    buildComplete(DefaultPath.shard.devOutPath);
   } catch (e) {
     if (!!e.errors && !!e.errors.length && e.errors.length > 0) {
       const error = e as esbuild.BuildFailure;

@@ -17,6 +17,14 @@ export class DefaultPath {
     }
   }
 
+  public get nodeModulesPath() {
+    return path.join(this.cwd, './node_modules');
+  }
+
+  public get devOutPath() {
+    return path.join(this.nodeModulesPath, '.electron-run/app');
+  }
+
   public get srcPath() {
     return path.join(this.cwd, './src');
   }
