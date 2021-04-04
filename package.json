@@ -1,6 +1,6 @@
 {
   "name": "electron-run",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "run your electron app.",
   "main": "build/main/src/index.js",
   "bin": {
@@ -29,11 +29,8 @@
     "cov:html": "nyc report --reporter=html",
     "cov:lcov": "nyc report --reporter=lcov",
     "cov:send": "run-s cov:lcov && codecov",
-    "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
-    "doc": "run-s doc:html && open-cli build/docs/index.html",
-    "doc:html": "typedoc src/ --exclude tests/**/*.test.ts --target ES6 --mode file --out build/docs",
-    "doc:json": "typedoc src/ --exclude tests/**/*.test.ts --target ES6 --mode file --json build/docs/typedoc.json",
-    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
+    "cov:check": "nyc report && nyc check-coverage --lines 20 --functions 20 --branches 20",
+    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d docs",
     "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && yarn",
     "prepare-release": "run-s reset-hard test cov:check doc:html version doc:publish"
@@ -78,15 +75,6 @@
   "peerDependencies": {
     "electron": ">=11.0.0"
   },
-  "files": [
-    "build/main",
-    "build/module",
-    "!tests/**/*.test.ts",
-    "!**/*.json",
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md"
-  ],
   "ava": {
     "failFast": true,
     "timeout": "60s",

@@ -12,7 +12,8 @@
     "build",
     "coverage",
     "fixtures",
-    "bin"
+    "bin",
+    "doc"
   ],
   "plugins": [
     "import",

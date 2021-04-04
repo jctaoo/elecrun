@@ -1,0 +1,14 @@
+{
+  "name": "simple",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "elecrun --vite"
+  },
+  "dependencies": {
+    "electron": "^12.0.2"
+  },
+  "devDependencies": {
+    "electron-run": "file:../../"
+  }
+}

@@ -1,0 +1,20 @@
+
+Then, you can run execute `electron-run --help` or `elecrun --help`(alias) to show the help information.
+
+- Install as devDependencies
+
+
+With the devDependencies, you can set `electron-run` or `elecrun` in the `scripts` in your `package.json`. Example:
+```json
+{
+      "name": "my-electron-app",
+      "scripts": {
+        "dev": "elecrun"
+      }
+}
+```
+Then you can run `yarn dev` to start your electron app in development mode by `electron-run`.
+
+bin: electron-run
+
+alias: elecrun
