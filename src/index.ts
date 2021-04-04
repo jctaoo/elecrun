@@ -24,7 +24,7 @@ program
   .description('Build your Electron main process code in main src.')
   .option(
     '--preload <file>',
-    "Electron preload filer relative to the main src. Won't be bundled."
+    "Electron preload script path relative to the main src. Won't be bundled."
   )
   .action(async (options: { preload: string }) => {
     await clean();
