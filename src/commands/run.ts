@@ -1,9 +1,9 @@
-import * as Path from 'path';
 import {
   CompileError,
   diagnose,
   notFoundTSConfig,
-  PathManager, writeMainTSConfig
+  PathManager,
+  writeMainTSConfig,
 } from '../common';
 import { finishMessage, startMessage } from '../common';
 import { prompt } from '../common/prompt';

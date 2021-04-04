@@ -3,7 +3,8 @@ import {
   finishBuildMessage,
   notFoundTSConfig,
   PathManager,
-  startMessage, writeMainTSConfig
+  startMessage,
+  writeMainTSConfig,
 } from '../common';
 
 import { runESBuildForMainProcess } from './esbuild';
@@ -24,7 +25,7 @@ export async function runBuild(options: { preloadScript?: string }) {
       const tsconfigPath = await writeMainTSConfig();
       notFoundTSConfig(tsconfigPath);
       return tsconfigPath;
-    },
+    }
   );
 
   // TODO print some useful information when build finished.

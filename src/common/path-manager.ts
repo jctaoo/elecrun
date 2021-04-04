@@ -54,28 +54,19 @@ export class PathManager {
   }
 
   public get defaultBaseTSConfigDir() {
-    return path.join(
-      this.devPath,
-      'tsconfig'
-    );
+    return path.join(this.devPath, 'tsconfig');
   }
 
   public get defaultMainTSConfigDir() {
-    return path.join(
-      this.devPath,
-      'tsconfig/src/main'
-    );
+    return path.join(this.devPath, 'tsconfig/src/main');
   }
 
   public get defaultRendererTSConfigDir() {
-    return path.join(
-      this.devPath,
-      'tsconfig/src/renderer'
-    );
+    return path.join(this.devPath, 'tsconfig/src/renderer');
   }
 
   public get defaultViteConfigDir() {
-    return this.devPath
+    return this.devPath;
   }
 
   public get devPath() {

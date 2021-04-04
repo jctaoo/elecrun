@@ -52,7 +52,10 @@ export const defaultRendererTSConfig = {
   exclude: ['../main/**/*'],
 };
 
-async function writeTSConfig<Config>(config: Config, dir: string): Promise<string> {
+async function writeTSConfig<Config>(
+  config: Config,
+  dir: string
+): Promise<string> {
   await fs.promises.mkdir(dir, { recursive: true });
   const str = JSON.stringify(config);
   const filePath = path.join(dir, 'tsconfig.json');

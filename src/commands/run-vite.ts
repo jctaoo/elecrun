@@ -1,12 +1,13 @@
 import fs from 'fs';
 
 import chalk from 'chalk';
-import { createServer, mergeConfig, Plugin } from 'vite';
+import { createServer, Plugin } from 'vite';
 
 import {
-  cannotFoundViteConfigMessage,
-  consoleViteMessagePrefix, notFoundViteConfig,
-  PathManager, writeDefaultViteConfig
+  consoleViteMessagePrefix,
+  notFoundViteConfig,
+  PathManager,
+  writeDefaultViteConfig,
 } from '../common';
 import { exists, LoggerPlugin } from '../utils';
 
