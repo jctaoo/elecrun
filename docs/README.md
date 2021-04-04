@@ -96,6 +96,7 @@ src/renderer/index.html
   }
 }
 ```
+> `elecrun` is alias of `electron-run`
 
 #### ⚡️ Start your electron app
 

@@ -1,7 +1,9 @@
 # electron-run
-run your electron app.
+**electron-run** is a tool to run your electron app easily.
 
 [![CI](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml)
+
+[View Documentation](https://jctaoo.github.io/electron-run/)
 
 bin: electron-run
 
