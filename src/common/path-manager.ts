@@ -53,6 +53,27 @@ export class PathManager {
     return path.join(this.cwd, './package.json');
   }
 
+  public get defaultBaseTSConfigDir() {
+    return path.join(
+      this.nodeModulesPath,
+      '.electron-run/tsconfig/'
+    );
+  }
+
+  public get defaultMainTSConfigDir() {
+    return path.join(
+      this.nodeModulesPath,
+      '.electron-run/tsconfig/src/main'
+    );
+  }
+
+  public get defaultRendererTSConfigDir() {
+    return path.join(
+      this.nodeModulesPath,
+      '.electron-run/tsconfig/src/renderer'
+    );
+  }
+
   public get devOutPath() {
     return path.join(this.nodeModulesPath, '.electron-run/app');
   }

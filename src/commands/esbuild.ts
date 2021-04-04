@@ -64,9 +64,9 @@ export const runESBuildForMainProcess: MainCommand = async (
   buildComplete,
   notFoundTSConfig
 ) => {
-  const tsconfigPath = path.join(PathManager.shard.mainPath, 'tsconfig.json');
+  let tsconfigPath = path.join(PathManager.shard.mainPath, 'tsconfig.json');
   if (!fs.existsSync(tsconfigPath)) {
-    notFoundTSConfig();
+    tsconfigPath = await notFoundTSConfig();
   }
 
   let count = 0;

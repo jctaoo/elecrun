@@ -28,7 +28,7 @@ const ElectronPreloadSourceMapPlugin = (): Plugin => {
 export async function startViteServer(configPath: string) {
   // TODO check configPath not exits
   const server = await createServer({
-    configFile: `${configPath}.ts`,
+    configFile: false,
     logLevel: 'silent',
     plugins: [LoggerPlugin(), ElectronPreloadSourceMapPlugin()],
   });

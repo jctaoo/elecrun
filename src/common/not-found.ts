@@ -5,9 +5,8 @@ import {
   cannotFoundTSConfigMessage,
 } from './logger-meta';
 
-export function notFoundTSConfig() {
-  console.error(chalk.red(cannotFoundTSConfigMessage));
-  process.exit();
+export function notFoundTSConfig(writePath: string) {
+  console.warn((cannotFoundTSConfigMessage(writePath)));
 }
 
 export function notFoundPackageJson() {

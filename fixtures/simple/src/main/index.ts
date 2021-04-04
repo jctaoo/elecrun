@@ -9,4 +9,4 @@ function createWindow() {
   win.loadURL('http://localhost:3000');
 }
 
-createWindow();
+app.whenReady().then(createWindow);

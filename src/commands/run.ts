@@ -1,8 +1,9 @@
+import * as Path from 'path';
 import {
   CompileError,
   diagnose,
   notFoundTSConfig,
-  PathManager,
+  PathManager, writeMainTSConfig
 } from '../common';
 import { finishMessage, startMessage } from '../common';
 import { prompt } from '../common/prompt';
@@ -67,6 +68,10 @@ export async function run(options: {
     reportError,
     buildStart,
     buildComplete,
-    notFoundTSConfig
+    async () => {
+      const tsconfigPath = await writeMainTSConfig();
+      notFoundTSConfig(tsconfigPath);
+      return tsconfigPath;
+    }
   );
 }
