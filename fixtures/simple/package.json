@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "elecrun --vite"
+    "dev": "elecrun --vite",
+    "build": "elecrun build",
+    "clean": "elecrun clean"
   },
   "dependencies": {
     "electron": "^12.0.2"

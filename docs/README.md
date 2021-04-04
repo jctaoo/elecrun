@@ -38,7 +38,7 @@ yarn global add electron-run --dev
 
 > Assuming you use yarn.
 
-- Start a new project
+#### Start a new project
 
 ```shell
 # create project directory
@@ -49,7 +49,7 @@ yarn init -y
 yarn add electron
 ```
 
-- Write your `main process` code in `TypeScript`
+#### Write your `main process` code in `TypeScript`
 
 src/main/index.ts
 ```ts
@@ -68,7 +68,7 @@ app.whenReady().then(createWindow);
 
 > For more information about electron, see [electron doc](https://www.electronjs.org/docs)
 
-- Write your `renderer process` code in `TypeScript`.
+#### Write your `renderer process` code in `TypeScript`.
 
 > Actually, you can use any front-end framework supported by `vite` here. In a simple project, let's use a single html file.
 
@@ -87,7 +87,7 @@ src/renderer/index.html
 </html>
 ```
 
-- Add a script in `package.json`.
+#### Add a script in `package.json`.
 
 ```json
 {
@@ -97,13 +97,18 @@ src/renderer/index.html
 }
 ```
 
-- ⚡️ Start your electron app
+#### ⚡️ Start your electron app
 
 ```shell
 yarn dev
 ```
 
 <center> <br><img width="500px" src="./screen-shot.webp"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">screen shot</div> <br></center>
+
+#### Source codes
+
+- https://github.com/jctaoo/electron-run/tree/main/fixtures/demo
+- https://github.com/jctaoo/electron-run/tree/main/fixtures/simple
 
 ## How it works
 
