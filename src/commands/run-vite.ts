@@ -1,10 +1,14 @@
 import fs from 'fs';
 
 import chalk from 'chalk';
-import { createServer, Plugin } from 'vite';
+import { createServer, mergeConfig, Plugin } from 'vite';
 
-import { consoleViteMessagePrefix, PathManager } from '../common';
-import { LoggerPlugin } from '../utils';
+import {
+  cannotFoundViteConfigMessage,
+  consoleViteMessagePrefix, notFoundViteConfig,
+  PathManager, writeDefaultViteConfig
+} from '../common';
+import { exists, LoggerPlugin } from '../utils';
 
 // serve electron preload script sourcemap
 const ElectronPreloadSourceMapPlugin = (): Plugin => {
@@ -25,10 +29,26 @@ const ElectronPreloadSourceMapPlugin = (): Plugin => {
   };
 };
 
+async function tryViteConfig(basePath: string): Promise<string | undefined> {
+  const tryExt = ['.js', '.ts'];
+  for (const ext of tryExt) {
+    const fullPath = basePath + ext;
+    if (await exists(fullPath)) return fullPath;
+  }
+  return;
+}
+
 export async function startViteServer(configPath: string) {
-  // TODO check configPath not exits
+  let viteConfigPath = await tryViteConfig(configPath);
+  if (!viteConfigPath) {
+    // vite config not exits
+    const writePath = await writeDefaultViteConfig();
+    notFoundViteConfig(writePath);
+    viteConfigPath = writePath;
+  }
+
   const server = await createServer({
-    configFile: false,
+    configFile: viteConfigPath,
     logLevel: 'silent',
     plugins: [LoggerPlugin(), ElectronPreloadSourceMapPlugin()],
   });

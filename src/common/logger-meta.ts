@@ -9,6 +9,10 @@ export const cannotFoundTSConfigMessage = (writePath: string): string =>
   chalk.yellow`Could not find a valid 'tsconfig.json'. A default one has been written in:\n` +
   writePath;
 
+export const cannotFoundViteConfigMessage = (writePath: string): string =>
+  chalk.yellow`Could not find a valid vite config. A default one has been written in:\n` +
+  writePath;
+
 export const cannotFoundPackageJsonMessage =
   "Could not find a valid 'package.json'.";
 export const startMessage = chalk.cyan(

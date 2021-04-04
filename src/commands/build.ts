@@ -20,7 +20,10 @@ export async function runBuild(options: { preloadScript?: string }) {
     (...errors) => diagnose(...errors),
     () => console.log(startMessage),
     () => {},
-    notFoundTSConfig
+    async () => {
+      // TODO
+      return ""
+    },
   );
 
   // TODO print some useful information when build finished.

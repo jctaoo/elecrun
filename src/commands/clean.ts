@@ -52,11 +52,11 @@ async function rmRecursively(path: string, excludes?: Array<string>) {
 }
 
 export async function clean() {
-  rmRecursively(PathManager.shard.devOutPath).then();
-  rmRecursively(PathManager.shard.outDir, [
+  await rmRecursively(PathManager.shard.devPath).then();
+  await rmRecursively(PathManager.shard.outDir, [
     'package.json',
     'yarn.lock',
     'package-lock.json',
   ]).then();
-  rmRecursively(PathManager.shard.distDir).then();
+  await rmRecursively(PathManager.shard.distDir).then();
 }
