@@ -13,7 +13,7 @@
     "coverage",
     "fixtures",
     "bin",
-    "doc"
+    "docs"
   ],
   "plugins": [
     "import",

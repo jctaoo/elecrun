@@ -66,7 +66,7 @@ function createWindow() {
 app.whenReady().then(createWindow);
 ```
 
-> For more information about electron, see [electron doc](https://www.electronjs.org/docs)
+> For more information about Electron, see [electron doc](https://www.electronjs.org/docs)
 
 #### Write your `renderer process` code in `TypeScript`.
 
@@ -104,7 +104,7 @@ src/renderer/index.html
 yarn dev
 ```
 
-<center> <br><img width="500px" src="./screen-shot.webp"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">screen shot</div> <br></center>
+<center> <br><img width="500px" src="images/screen-shot.webp"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">screen shot</div> <br></center>
 
 #### Source codes
 
@@ -186,4 +186,4 @@ The build phase is almost the same as the development phase. The difference is t
 
 ### clean output
 
-run `elecrun clean` to easily clean output by `electron run`
+run `elecrun clean` to easily clean output by `electron-run`

@@ -1,7 +1,7 @@
 {
   "name": "electron-run",
-  "version": "0.1.0",
-  "description": "run your electron app.",
+  "version": "2.0.0",
+  "description": "electron-run is a tool to run your electron app easily.",
   "main": "build/main/src/index.js",
   "bin": {
     "electron-run": "bin/elecrun.js",
@@ -11,7 +11,12 @@
   "module": "build/module/index.js",
   "repository": "https://github.com/jctaoo/electron-run",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "esbuild",
+    "vite",
+    "electron"
+  ],
   "scripts": {
     "build": "run-p build:*",
     "build:main": "tsc -p tsconfig.json",
@@ -30,10 +35,11 @@
     "cov:lcov": "nyc report --reporter=lcov",
     "cov:send": "run-s cov:lcov && codecov",
     "cov:check": "nyc report && nyc check-coverage --lines 20 --functions 20 --branches 20",
-    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d docs",
     "version": "standard-version",
-    "reset-hard": "git clean -dfx && git reset --hard && yarn",
-    "prepare-release": "run-s reset-hard test cov:check doc:html version doc:publish"
+    "version:major": "standard-version -r major",
+    "version:minor": "standard-version -r minor",
+    "version:patch": "standard-version -r patch",
+    "prepublishOnly": "run-s test"
   },
   "engines": {
     "node": ">=10"
@@ -68,10 +74,18 @@
     "prettier": "^2.1.1",
     "standard-version": "^9.0.0",
     "ts-node": "^9.0.0",
-    "typedoc": "^0.19.0",
     "typescript": "^4.0.2",
     "xvfb-maybe": "^0.2.1"
   },
+  "files": [
+    "build/main",
+    "build/module",
+    "!tests/**/*.test.ts",
+    "!**/*.json",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
   "peerDependencies": {
     "electron": ">=11.0.0"
   },
