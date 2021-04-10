@@ -5,6 +5,7 @@ export type MainCommand = (
     isBuild: boolean;
     outDir: string;
     preloadScript?: string;
+    entryPath: string;
   },
   reportError: (...errs: CompileError[]) => void,
   buildStart: () => void,

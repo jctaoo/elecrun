@@ -109,6 +109,7 @@ export class PathManager {
     return path.join(this.cwd, 'vite.config');
   }
 
+  // TODO removing this, see run.ts and search defaultEntryList
   public get entryPath() {
     return path.join(this.mainPath, 'index.ts');
   }

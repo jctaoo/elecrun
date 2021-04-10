@@ -39,11 +39,16 @@ async function tryViteConfig(basePath: string): Promise<string | undefined> {
   return;
 }
 
-export async function startViteServer(configPath: string) {
+export async function startViteServer(options: {
+  configPath: string;
+  root: string;
+}) {
+  const { configPath, root } = options;
+
   let viteConfigPath = await tryViteConfig(configPath);
   if (!viteConfigPath) {
     // vite config not exits
-    const writePath = await writeDefaultViteConfig();
+    const writePath = await writeDefaultViteConfig(root);
     notFoundViteConfig(writePath);
     viteConfigPath = writePath;
   }

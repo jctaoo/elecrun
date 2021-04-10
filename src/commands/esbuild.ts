@@ -58,7 +58,7 @@ async function findExternal(): Promise<string[]> {
 }
 
 export const runESBuildForMainProcess: MainCommand = async (
-  { isBuild, outDir, preloadScript },
+  { isBuild, outDir, preloadScript, entryPath },
   reportError,
   _buildStart,
   buildComplete,
@@ -72,7 +72,7 @@ export const runESBuildForMainProcess: MainCommand = async (
   let count = 0;
   const externals = await findExternal();
 
-  const entryPoints = [PathManager.shard.entryPath];
+  const entryPoints = [entryPath];
   if (preloadScript) {
     if (!/^.*\.(js|ts|jsx|tsx)$/.test(preloadScript)) {
       console.log(warnPreloadMessage);

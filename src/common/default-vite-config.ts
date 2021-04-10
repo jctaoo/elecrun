@@ -3,11 +3,11 @@ import path from 'path';
 
 import { PathManager } from './path-manager';
 
-export const defaultViteConfig = `
+export const defaultViteConfig = (root: string): string => `
 import { defineConfig } from "vite";
 
-const rendererPath = "./src/renderer"
-const outDirRenderer = "./build"
+const rendererPath = "${root}";
+const outDirRenderer = "./build";
 
 export default defineConfig({
   base: "./",
@@ -19,7 +19,7 @@ export default defineConfig({
 });
 `;
 
-export const writeDefaultViteConfig = async (): Promise<string> => {
+export const writeDefaultViteConfig = async (root: string): Promise<string> => {
   await fs.promises.mkdir(PathManager.shard.defaultViteConfigDir, {
     recursive: true,
   });
@@ -27,6 +27,6 @@ export const writeDefaultViteConfig = async (): Promise<string> => {
     PathManager.shard.defaultViteConfigDir,
     'vite.config.ts'
   );
-  await fs.promises.writeFile(filePath, defaultViteConfig);
+  await fs.promises.writeFile(filePath, defaultViteConfig(root));
   return filePath;
 };

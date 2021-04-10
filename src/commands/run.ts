@@ -1,4 +1,5 @@
 import {
+  cannotFoundEntryScriptOrViteRootPath,
   CompileError,
   diagnose,
   notFoundTSConfig,
@@ -7,6 +8,7 @@ import {
 } from '../common';
 import { finishMessage, startMessage } from '../common';
 import { prompt } from '../common/prompt';
+import { findPathOrExit } from '../utils/find-paths-or-exit';
 
 import { runESBuildForMainProcess } from './esbuild';
 import { startElectron } from './run-electron';
@@ -51,19 +53,52 @@ async function buildComplete(dir: string, count: number) {
 export async function run(options: {
   withVite: boolean;
   preloadScript?: string;
+  entry?: string;
+  viteRoot?: string;
 }) {
-  const { withVite, preloadScript } = options;
+  const { withVite, preloadScript, entry, viteRoot } = options;
 
   // Start vite server
   if (withVite) {
-    await startViteServer(PathManager.shard.viteConfigPath);
+    // find root first
+    // TODO move to PathManager.ts
+    const defaultRootList = ['./src/renderer/', './src/', './'];
+    const viteRootPath = await findPathOrExit(
+      viteRoot,
+      defaultRootList,
+      cannotFoundEntryScriptOrViteRootPath(process.cwd())
+    );
+
+    await startViteServer({
+      configPath: PathManager.shard.viteConfigPath,
+      root: viteRootPath,
+    });
   }
+
   // Start dev for main process
+
+  // find entry first
+  // TODO move to PathManager.ts
+  const defaultEntryList = [
+    './src/main/index.js',
+    './src/main/index.ts',
+    './src/index.js',
+    './src/index.ts',
+    './index.js',
+    './index.ts',
+  ];
+  const entryScriptPath = await findPathOrExit(
+    entry,
+    defaultEntryList,
+    cannotFoundEntryScriptOrViteRootPath(process.cwd())
+  );
+
   await runESBuildForMainProcess(
     {
       isBuild: false,
       outDir: PathManager.shard.devOutPath,
       preloadScript,
+      entryPath: entryScriptPath,
     },
     reportError,
     buildStart,
