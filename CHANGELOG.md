@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/jctaoo/electron-run/compare/v2.0.0...v2.0.1) (2021-04-10)
+
+
+### Features
+
+* support main process entry path argument and vite root dir option ([a5d4caf](https://github.com/jctaoo/electron-run/commit/a5d4caf5e4d0273f984b763f13fee255b5109691))
+
 ## 2.0.0 (2021-04-05)
 
 
