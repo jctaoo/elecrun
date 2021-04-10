@@ -4,7 +4,7 @@
 
 ## Features
 
-- Write [TypeScript](https://www.typescriptlang.org/) in [Node.js](https://nodejs.org/en/) with no config (No config file such as tsconfig.json, webpack.config.js and rollup.config.js).
+- Write modern JavaScript, [TypeScript](https://www.typescriptlang.org/) in [Node.js](https://nodejs.org/en/) with no config.
 
 - Let [Electron](https://www.electronjs.org/) work with any front-end framework.
 
@@ -36,8 +36,6 @@ yarn global add electron-run --dev
 
 ### Create & Run electron app
 
-> Assuming you use yarn.
-
 #### Start a new project
 
 ```shell
@@ -46,12 +44,13 @@ mkdir my-electron-app && cd my-electron-app
 # initialize your project
 yarn init -y
 # install electron as dependencies
-yarn add electron
+yarn add electron -D
 ```
 
-#### Write your `main process` code in `TypeScript`
+#### Write your `main process` code in `TypeScript` (JavaScript is also ok)
 
-src/main/index.ts
+index.ts
+
 ```ts
 import { app, BrowserWindow } from 'electron';
 
@@ -72,18 +71,18 @@ app.whenReady().then(createWindow);
 
 > Actually, you can use any front-end framework supported by `vite` here. In a simple project, let's use a single html file.
 
-src/renderer/index.html
+index.html
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Electron App</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-  </body>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <title>Electron App</title>
+</head>
+<body>
+<h1>Hello World</h1>
+</body>
 </html>
 ```
 
@@ -96,6 +95,7 @@ src/renderer/index.html
   }
 }
 ```
+
 > `elecrun` is alias of `electron-run`
 
 #### ⚡️ Start your electron app
@@ -113,23 +113,11 @@ yarn dev
 
 ## How it works
 
-### File Structure
-
-```
-+-src
-|--+-main
-|  |---index.ts
-|--+-renderer
-|  |---index.html
-|--package.json
-```
-
-
 ### Renderer Process
 
-`electron-run` using `vite` to handle code in renderer process located `src/renderer`.
+`electron-run` using `vite` to handle code in renderer process.
 
-The entry file is `index.html` and vite using [esm](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) to struct your renderer process code.
+The entry file is `index.html` in `root directory`(You can specify the root directory path, see [options --vite](#options---vite-renderer-root)) and vite using [esm](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) to struct your renderer process code.
 
 Vite also provides a dev server support `Hot Module Replacement`. It's means your code changes can always be displayed on the interface.
 
@@ -141,23 +129,53 @@ For more information, see [vite official website](https://vitejs.dev)
 
 `electron-run` using `esbuild` to transform your code may cannot directly run in nodejs such as TypeScript and modern JavaScript to the code nodejs can handle. Besides, `electron-run` also bundle your code to one file.
 
-When you run `elecrun dev`, `electron-run` will try to read `src/main/index.ts` as entry file and statically analyze to transform your code, then save the target code to your `node_modules/.electron-run` (there is one exception, see [options --preload](#options---preload-file)). After code transforming is over, `electron-run` will execute `electron` command line tool to start your app.
+When you run `elecrun dev`, `electron-run` will try to find and read entry file(You can specify the entry file path, see [development phase](#development-phase)) then statically analyze to transform your code. After that, save the target code to your `node_modules/.electron-run` (there is one exception, see [options --preload](#options---preload-file)). Finally, `electron-run` will execute `electron` command line tool to start your app.
 
-When your code in `src/main` has been changed, `electron-run` will ask if you want to rerun your app. This is useful when you don’t want to interrupt the current debugging.
+When your main process code has been changed, `electron-run` will ask if you want to rerun your app. This is useful when you don’t want to interrupt the current debugging.
 
 ## Guide
 
 ### development phase
-run 
+
+run
+
 ```shell
 elecrun dev --vite
 # or 
 elecrun --vite
 ```
 
-#### options `--vite`
+The full version of dev command is `elecrun [file-entry] [options]`. The only argument is `file-entry` that indicates the path of entry script for main process. You can specify this or `electron-run` will automatically find the entry script path by the following list:
+
+- ./src/main/index.js
+- ./src/main/index.ts
+- ./src/index.js
+- ./src/index.ts
+- ./index.js
+- ./index.ts
+
+example:
+
+```shell
+elecrun dev ./main.ts
+```
+
+#### options `--vite [renderer root]`
 
 The option `--vite` means run vite server with `electron-run`. If you don't want using `vite`, just remove this option.
+
+The 'renderer root' is the root directory for vite. You can specify this or `electron-run`
+will automatically find the root directory by the following list:
+
+- ./src/renderer/
+- ./src/
+- ./
+
+example:
+
+```shell
+elecrun dev --vite ./src
+```
 
 #### options `--preload <file>`
 
@@ -175,14 +193,15 @@ The parameter `<file>` should be set as preload script path relative to the main
 |--package.json
 ```
 
-run 
+run
+
 ```shell
 elecrun --vite --preload preload.ts
 ```
 
 ### build phase
 
-The build phase is almost the same as the development phase. The difference is that the compiled files are stored in `node_modules` in the development phase, while the build phase is stored in the app directory.
+The build phase is almost the same as the development phase (also including all the options and arguments except `--vite`). The difference is that the compiled files are stored in `node_modules` in the development phase, while the build phase is stored in the app directory.
 
 ### clean output
 

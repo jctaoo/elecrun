@@ -19,7 +19,7 @@ export const cannotFoundEntryScriptOrViteRootPath = (cwd: string): string =>
   - 1. Add an argument that indicates the entry path for the main process and the option 
        that indicates the root path for vite. Example:
           run \`elecrun dev ./index.js --vite ./index.html\`
-  - 2. Elecrun will auto find the entry path and vite root path by the following 
+  - 2. Elecrun will automatically find the entry path and vite root path by the following 
        list while you didn't specify the entry path argument.
           entry script for main process:
             - ./src/main/index.js

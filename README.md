@@ -13,13 +13,12 @@ alias: elecrun
 Usage: electron-run [options] [command]
 
 Options:
-  -V, --version    output the version number
-  -h, --help       display help for command
+  -V, --version            output the version number
+  -h, --help               display help for command
 
 Commands:
-  dev [options]    ⚡️Start to dev your electron app.
-  build [options]  Build your Electron main process code in main src.
+  dev [options] [entry]    ⚡️Start to dev your electron app.
+  build [options] [entry]  Build your Electron main process code in main src.
   clean
-  help [command]   display help for command
-
+  help [command]           display help for command
 ```

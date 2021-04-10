@@ -7,7 +7,7 @@ import { clean, run, runBuild } from './commands';
 const program = new commander.Command(pkg.name).version(pkg.version);
 
 program
-  .command('dev [file entry]', { isDefault: true })
+  .command('dev [entry]', { isDefault: true })
   .description('⚡️Start to dev your electron app.')
   .option(
     '--vite [root dir]',
@@ -40,7 +40,7 @@ program
   );
 
 program
-  .command('build [file entry]')
+  .command('build [entry]')
   .description('Build your Electron main process code in main src.')
   .option(
     '--preload <file>',
