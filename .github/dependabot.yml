@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: eslint
+    versions:
+    - 7.24.0
+  - dependency-name: vite
+    versions:
+    - 2.2.1
+  - dependency-name: eslint-config-prettier
+    versions:
+    - 8.2.0
