@@ -1,11 +1,10 @@
-import test from 'ava';
-
 import { repeatString } from '../../src/utils';
 
-test("test repeat-string", (t) => {
-  t.deepEqual("ababab", repeatString("ab", 3));
-  t.deepEqual("~~~", repeatString("~", 3));
-  t.deepEqual("bb", repeatString("b", 2));
-  t.deepEqual("   ", repeatString(" ", 3));
-  t.notDeepEqual("ava", repeatString("a", 3));
-})
+it('test repeat-string', () => {
+  expect(repeatString("ab", 3)).toBe("ababab");
+  expect(repeatString("~", 3)).toBe("~~~");
+  expect(repeatString("b", 2)).toBe("bb");
+  expect(repeatString(" ", 3)).toBe("   ");
+  expect(repeatString('a', 3)).not.toBe("ava");
+});
+
