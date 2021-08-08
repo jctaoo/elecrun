@@ -17,11 +17,16 @@ program
     '--preload <file>',
     "Electron preload filer relative to the main src. Won't be bundled."
   )
+  .option(
+    '--clean-cache',
+    "Clean build cache."
+  )
   .action(
     async (
       entryFile: string | undefined,
-      options: { vite: string | boolean; preload: string }
+      options: { vite: string | boolean; preload: string; cleanCache: boolean }
     ) => {
+      console.log(options.cleanCache)
       const withVite = !!options.vite;
       let viteRootPath: string | undefined;
 
@@ -29,7 +34,10 @@ program
         viteRootPath = options.vite;
       }
 
-      await clean();
+      if (options.cleanCache) {
+        await clean();
+      }
+
       await run({
         entry: entryFile,
         withVite,
@@ -48,7 +56,6 @@ program
   )
   .action(
     async (entryFile: string | undefined, options: { preload: string }) => {
-      await clean();
       await runBuild({ preloadScript: options.preload, entry: entryFile });
     }
   );

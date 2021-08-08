@@ -199,6 +199,10 @@ run
 elecrun --vite --preload preload.ts
 ```
 
+#### option `--clean-cache`
+
+`dev` command save the build artifact to `node_modules/.electron-run/app` under your project by default. But sometimes you want to clean these files. This options help you clean cache files when you run `dev` command.
+
 ### build phase
 
 The build phase is almost the same as the development phase (also including all the options and arguments except `--vite`). The difference is that the compiled files are stored in `node_modules` in the development phase, while the build phase is stored in the app directory.
