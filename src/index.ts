@@ -17,16 +17,13 @@ program
     '--preload <file>',
     "Electron preload filer relative to the main src. Won't be bundled."
   )
-  .option(
-    '--clean-cache',
-    "Clean build cache."
-  )
+  .option('--clean-cache', 'Clean build cache.')
   .action(
     async (
       entryFile: string | undefined,
       options: { vite: string | boolean; preload: string; cleanCache: boolean }
     ) => {
-      console.log(options.cleanCache)
+      console.log(options.cleanCache);
       const withVite = !!options.vite;
       let viteRootPath: string | undefined;
 
