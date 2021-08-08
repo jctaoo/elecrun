@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/jctaoo/electron-run/compare/v2.0.1...v2.2.0) (2021-08-08)
+
+
+### Features
+
+* **dev:** add `--clean-cache` option ([b805138](https://github.com/jctaoo/electron-run/commit/b805138172f5916fc2a318154bdc880039cac2bf)), closes [#42](https://github.com/jctaoo/electron-run/issues/42)
+
 ## [2.1.0](https://github.com/jctaoo/electron-run/compare/v2.0.1...v2.1.0) (2021-08-08)
 
 

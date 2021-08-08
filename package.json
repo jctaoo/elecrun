@@ -1,6 +1,6 @@
 {
   "name": "electron-run",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "electron-run is a tool to run your electron app easily.",
   "main": "build/main/src/index.js",
   "bin": {
