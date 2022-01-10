@@ -45,7 +45,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "colorette": "^2.0.16",
     "commander": "^7.2.0",
     "esbuild": "^0.11.3",
     "process-exists": "^4.0.0",

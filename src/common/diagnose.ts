@@ -1,6 +1,6 @@
 import os from 'os';
 
-import chalk from 'chalk';
+import { magentaBright } from 'colorette';
 
 import { CompileError, formatCompileError } from './compile-error';
 import { consoleMessagePrefix } from './logger-meta';
@@ -21,15 +21,13 @@ function formatDiagnosticsMessage(errors: CompileError[]): string {
   });
 
   const res =
-    chalk.rgb(
-      255,
-      161,
-      237
-    )(`${consoleMessagePrefix} Some typescript compilation errors occurred:`) +
+    magentaBright(
+      `${consoleMessagePrefix} Some typescript compilation errors occurred:`
+    ) +
     '\n' +
     diagnosticDetail +
     '\n' +
-    chalk.rgb(255, 161, 237)(errorMessage);
+    magentaBright(errorMessage);
 
   return res;
 }

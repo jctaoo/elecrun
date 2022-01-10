@@ -1,6 +1,6 @@
 import readline from 'readline';
 
-import chalk from 'chalk';
+import { green } from 'colorette';
 
 export function prompt(question: string): [() => Promise<boolean>, () => void] {
   const input = process.stdin;
@@ -11,7 +11,7 @@ export function prompt(question: string): [() => Promise<boolean>, () => void] {
     output,
   });
 
-  const questionAndPrompt = `${chalk.green`?`} ${question} (Y/n) `;
+  const questionAndPrompt = `${green('?')} ${question} (Y/n) `;
 
   let answerResolve: (answer: boolean) => void = () => {};
   const answerPromise = new Promise<boolean>((r) => {

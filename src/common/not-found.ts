@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { red } from 'colorette';
 
 import {
   cannotFoundPackageJsonMessage,
@@ -15,6 +15,6 @@ export function notFoundViteConfig(writePath: string) {
 }
 
 export function notFoundPackageJson() {
-  console.error(chalk.red(cannotFoundPackageJsonMessage));
+  console.error(red(cannotFoundPackageJsonMessage));
   process.exit();
 }
