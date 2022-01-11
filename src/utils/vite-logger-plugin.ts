@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { gray, yellow } from 'colorette';
 import { Plugin } from 'vite';
 
 import { consoleViteMessagePrefix, PathManager } from '../common';
@@ -12,9 +12,9 @@ export function LoggerPlugin(): Plugin {
         if (!file.file) continue;
         const path = file.file.replace(PathManager.shard.srcPath, '');
         console.log(
-          chalk.yellow(consoleViteMessagePrefix),
-          chalk.yellow('hmr update'),
-          chalk.grey(path)
+          yellow(consoleViteMessagePrefix),
+          yellow('hmr update'),
+          gray(path)
         );
       }
       return ctx.modules;

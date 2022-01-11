@@ -2,7 +2,7 @@ import { ChildProcess } from 'child_process';
 import * as childProcess from 'child_process';
 import * as stream from 'stream';
 
-import chalk from 'chalk';
+import { gray } from 'colorette';
 
 import { removeJunkTransformOptions } from '../utils';
 
@@ -26,7 +26,7 @@ export async function startElectron({
   const electronProcess = childProcess.spawn(electron, [path ?? '', '--color']);
   electronProcess.on('exit', (code) => {
     if (!exitByScripts) {
-      console.log(chalk.gray(`Electron exited with code ${code}`));
+      console.log(gray(`Electron exited with code ${code}`));
       process.exit();
     }
     exitByScripts = true;

@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import chalk from 'chalk';
+import { green } from 'colorette';
 import { createServer, Plugin } from 'vite';
 
 import {
@@ -67,8 +67,8 @@ export async function startViteServer(options: {
   if (address && typeof address === 'object') {
     const port = address.port;
     console.log(
-      chalk.green(consoleViteMessagePrefix),
-      chalk.green(`Dev server running at: localhost:${port}`)
+      green(consoleViteMessagePrefix),
+      green(`Dev server running at: localhost:${port}`)
     );
   }
 }
