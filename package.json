@@ -49,7 +49,7 @@
     "commander": "^7.2.0",
     "esbuild": "^0.11.3",
     "process-exists": "^4.0.0",
-    "vite": "^2.1.5"
+    "vite": "^2.7.10"
   },
   "devDependencies": {
     "@ava/typescript": "^1.1.1",
