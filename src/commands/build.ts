@@ -11,12 +11,17 @@ import { findPathOrExit } from '../utils/find-paths-or-exit';
 
 import { runESBuildForMainProcess } from './esbuild';
 
-export async function runBuild(options: {
-  entry?: string;
-  preloadScript?: string;
-}) {
-  const { entry, preloadScript } = options;
+interface RunBuildOptions {
+  entry?: string /** Entry Point */;
+  preloadScript?: string /** Filename of the preload script */;
+  esbuildConfigFile?: string /** Filename of the esbuild config to use */;
+}
 
+export async function runBuild({
+  entry,
+  preloadScript,
+  esbuildConfigFile,
+}: RunBuildOptions) {
   // find entry first
   // TODO move to PathManager.ts
   const defaultEntryList = [
@@ -39,6 +44,7 @@ export async function runBuild(options: {
       outDir: PathManager.shard.outDir,
       preloadScript,
       entryPath: entryScriptPath,
+      esbuildConfigFile,
     },
     (...errors) => diagnose(...errors),
     () => console.log(startMessage),
