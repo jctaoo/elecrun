@@ -47,7 +47,7 @@
   "dependencies": {
     "colorette": "^2.0.16",
     "commander": "^7.2.0",
-    "esbuild": "^0.11.3",
+    "esbuild": "^0.14.11",
     "process-exists": "^4.0.0",
     "vite": "^2.7.12"
   },
