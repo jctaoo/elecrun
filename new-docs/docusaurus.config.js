@@ -1,6 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Electrun',
+  title: 'Elecrun',
   tagline: 'A tool to run your electron app easily.',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
@@ -11,7 +11,7 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Electrun',
+      title: 'Elecrun',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
