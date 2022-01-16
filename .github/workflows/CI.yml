@@ -13,9 +13,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        # ${{ github.head_ref }} is required in order to work with the pull_request event (or any other non-push event) that might be made by "Prettify code and commit changes made by prettier". You have to do this to avoid that the checkout-Action clones your repository in a detached state.
-        with:
-          ref: ${{ github.head_ref }}
 
       - uses: actions/cache@v2
         id: cache
@@ -42,13 +39,6 @@ jobs:
         run: |
           echo "Prettifying code"
           yarn fix:prettier
-
-      - name: Commit if changes (by prettier) have been detected
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Automated commit made because of prettier
-          run: echo "Changes detected. Making a new commit!"
 
       - name: install dependencies for fixtures
         run: |
