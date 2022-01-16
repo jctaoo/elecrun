@@ -1,10 +1,10 @@
-name: CI
+name: Continuous Integration
 
+# This action works with pull requests and pushes
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -35,6 +35,10 @@ jobs:
           yarn install
           yarn global add npm-publish
 
+      - name: Prettify code
+        run: |
+          echo "Prettifying code"
+          yarn fix:prettier
 
       - name: install dependencies for fixtures
         run: |
@@ -53,4 +57,4 @@ jobs:
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: ./docs
-          commit_message: "[ci skip] Updates"
+          commit_message: '[ci skip] Updates'

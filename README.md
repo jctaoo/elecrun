@@ -8,9 +8,9 @@
 
 - Let [Electron](https://www.electronjs.org/) work with any front-end framework.
 
-- Using [esbuild](https://esbuild.github.io/) to transform your main process code, It's very fast ⚡️.
+- Using [Esbuild](https://esbuild.github.io/) to transform your main process code, It's very fast ⚡️.
 
-- Using [vite](https://vitejs.dev/) in renderer process.
+- Using [Vite](https://vitejs.dev/) in renderer process.
 
 ## Quick Start
 
@@ -104,7 +104,7 @@ index.html
 yarn dev
 ```
 
-<center> <br><img width="500px" src="images/screen-shot.webp"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">screen shot</div> <br></center>
+<center> <br><img width="500px" src="docs/images/screen-shot.webp"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">screen shot</div> <br></center>
 
 #### Source codes
 
@@ -131,7 +131,7 @@ For more information, see [vite official website](https://vitejs.dev)
 
 When you run `elecrun dev`, `electron-run` will try to find and read entry file(You can specify the entry file path, see [development phase](#development-phase)) then statically analyze to transform your code. After that, save the target code to your `node_modules/.electron-run` (there is one exception, see [options --preload](#options---preload-file)). Finally, `electron-run` will execute `electron` command line tool to start your app.
 
-When your main process code has been changed, `electron-run` will ask if you want to rerun your app. This is useful when you don’t want to interrupt the current debugging.
+When your main process code has been changed, `electron-run` will ask if you want to rerun your app. This is useful when you don't want to interrupt the current debugging.
 
 ## Guide
 
@@ -141,7 +141,7 @@ run
 
 ```shell
 elecrun dev --vite
-# or 
+# or
 elecrun --vite
 ```
 
