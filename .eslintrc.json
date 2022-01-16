@@ -1,12 +1,26 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
-  "env": {
-    "es6": true
-  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["./tsconfig.json", "./new-docs/tsconfig.json"]
+      },
+      "env": {
+        "es6": true,
+        "node": true
+      }
+    },
+    {
+      "files": ["*.js"],
+      "env": {
+        "es6": true,
+        "node": true,
+        "browser": true
+      }
+    }
+  ],
   "ignorePatterns": [
     "node_modules",
     "build",
@@ -15,10 +29,7 @@
     "bin",
     "docs"
   ],
-  "plugins": [
-    "import",
-    "eslint-comments"
-  ],
+  "plugins": ["import", "eslint-comments"],
   "extends": [
     "eslint:recommended",
     "plugin:eslint-comments/recommended",

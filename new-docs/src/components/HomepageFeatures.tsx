@@ -1,5 +1,7 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-var-requires */ // TODO:
 import clsx from 'clsx';
+import React from 'react';
+
 import styles from './HomepageFeatures.module.css';
 
 const FeatureList = [
