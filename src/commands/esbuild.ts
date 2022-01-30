@@ -5,7 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import * as esbuild from 'esbuild';
+import { BuildFailure, BuildOptions } from 'esbuild';
 
 import {
   CompileError,
@@ -17,7 +17,7 @@ import {
 import { MainCommand } from '../types';
 import { exists } from '../utils';
 
-function transformErrors(error: esbuild.BuildFailure): CompileError[] {
+function transformErrors(error: BuildFailure): CompileError[] {
   return error.errors.map(
     (e): CompileError => {
       return {
@@ -61,7 +61,7 @@ async function findExternal(): Promise<string[]> {
 /** When provided with a filename, loads the esbuild js config from the file as a default export */
 export const loadESBuildConfigFromFile = (
   file?: string
-): Partial<esbuild.BuildOptions> => {
+): Partial<BuildOptions> => {
   // No file provided
   if (!file) return {};
 
@@ -83,6 +83,17 @@ export const loadESBuildConfigFromFile = (
   return {};
 };
 
+/** Attempt to return esbuild from the project, if it exists */
+const findESBuildForProject = () => {
+  const esBuildPath = path.join(PathManager.shard.nodeModulesPath, 'esbuild');
+  if(fs.existsSync(esBuildPath)) {
+    console.log("Using esbuild from ", esBuildPath)
+    return require(esBuildPath)
+  } else {
+    return require('esbuild')
+  }
+}
+
 export const runESBuildForMainProcess: MainCommand = async (
   { isBuild, outDir, preloadScript, entryPath, esbuildConfigFile },
   reportError,
@@ -90,6 +101,9 @@ export const runESBuildForMainProcess: MainCommand = async (
   buildComplete,
   notFoundTSConfig
 ) => {
+
+  const esbuild = findESBuildForProject();
+
   // Load esbuild config file supplied by user
   const esbuildConfigExtra = loadESBuildConfigFromFile(esbuildConfigFile);
 
@@ -134,7 +148,7 @@ export const runESBuildForMainProcess: MainCommand = async (
       external: externals,
       watch: !isBuild
         ? {
-            onRebuild: async (error) => {
+            onRebuild: async (error: BuildFailure) => {
               if (error) {
                 reportError(...transformErrors(error));
               } else {
@@ -150,7 +164,7 @@ export const runESBuildForMainProcess: MainCommand = async (
     buildComplete(outDir, count);
   } catch (e) {
     if (!!e.errors && !!e.errors.length && e.errors.length > 0) {
-      const error = e as esbuild.BuildFailure;
+      const error = e as BuildFailure;
       reportError(...transformErrors(error));
     }
   }
