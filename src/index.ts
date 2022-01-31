@@ -17,11 +17,20 @@ program
     '--preload <file>',
     "Electron preload filer relative to the main src. Won't be bundled."
   )
+  .option(
+    '--esbuild-config-file <file>',
+    'Custom config js file to use with esbuild'
+  )
   .option('--clean-cache', 'Clean build cache.')
   .action(
     async (
       entryFile: string | undefined,
-      options: { vite: string | boolean; preload: string; cleanCache: boolean }
+      options: {
+        vite: string | boolean;
+        preload: string;
+        cleanCache: boolean;
+        esbuildConfigFile: string;
+      }
     ) => {
       console.log(options.cleanCache);
       const withVite = !!options.vite;
@@ -40,6 +49,7 @@ program
         withVite,
         preloadScript: options.preload,
         viteRoot: viteRootPath,
+        esbuildConfigFile: options.esbuildConfigFile,
       });
     }
   );
@@ -51,9 +61,20 @@ program
     '--preload <file>',
     "Electron preload script path relative to the main src. Won't be bundled."
   )
+  .option(
+    '--esbuild-config-file <file>',
+    'Custom config js file to use with esbuild'
+  )
   .action(
-    async (entryFile: string | undefined, options: { preload: string }) => {
-      await runBuild({ preloadScript: options.preload, entry: entryFile });
+    async (
+      entryFile: string | undefined,
+      options: { preload: string; esbuildConfigFile: string }
+    ) => {
+      await runBuild({
+        preloadScript: options.preload,
+        entry: entryFile,
+        esbuildConfigFile: options.esbuildConfigFile,
+      });
     }
   );
 

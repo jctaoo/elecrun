@@ -55,8 +55,15 @@ export async function run(options: {
   preloadScript?: string;
   entry?: string;
   viteRoot?: string;
+  esbuildConfigFile?: string;
 }) {
-  const { withVite, preloadScript, entry, viteRoot } = options;
+  const {
+    withVite,
+    preloadScript,
+    entry,
+    viteRoot,
+    esbuildConfigFile,
+  } = options;
 
   // Start vite server
   if (withVite) {
@@ -99,6 +106,7 @@ export async function run(options: {
       outDir: PathManager.shard.devOutPath,
       preloadScript,
       entryPath: entryScriptPath,
+      esbuildConfigFile,
     },
     reportError,
     buildStart,

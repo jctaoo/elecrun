@@ -1,6 +1,7 @@
 import { red } from 'colorette';
 
 import {
+  cannotFoundESBuildConfigMessage,
   cannotFoundPackageJsonMessage,
   cannotFoundTSConfigMessage,
   cannotFoundViteConfigMessage,
@@ -17,4 +18,8 @@ export function notFoundViteConfig(writePath: string) {
 export function notFoundPackageJson() {
   console.error(red(cannotFoundPackageJsonMessage));
   process.exit();
+}
+
+export function notFoundESBuildConfig() {
+  console.warn(cannotFoundESBuildConfigMessage);
 }
