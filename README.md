@@ -10,6 +10,8 @@
   </p>
 </div>
 
+[中文文档](./README_CN.md)
+
 ## Features
 
 - Write modern JavaScript, [TypeScript](https://www.typescriptlang.org/) in [Node.js](https://nodejs.org/en/) with no config.
