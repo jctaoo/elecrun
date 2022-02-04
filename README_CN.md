@@ -46,7 +46,7 @@ yarn global add electron-run --dev
 
 ### 创建并运行 Electron 应用
 
-#### 开始一个新等项目
+#### 开始一个全新的项目
 
 ```shell
 # 创建项目目录
@@ -105,8 +105,6 @@ index.html
   }
 }
 ```
-
-> `elecrun` 是 `electron-run` 的别名
 
 #### ⚡️ 开始运行您的 Electron 程序
 
@@ -209,7 +207,12 @@ elecrun --vite --preload preload.ts
 
 #### 选项 `--clean-cache`
 
-`dev` command save the build artifacts to `node_modules/.electron-run/app` under your project by default. But sometimes you want to clean these files. This options help you clean cache files when you run `dev` command.
+`dev` 命令会存一些打包产物在 `node_modules/.electron-run/app` 下, 这条命令帮助你在开始 `dev` 前清除掉这些缓存.
+
+#### 选项 `--esbuild-config-file`
+
+运行在使用 `dev` 和 `build` 命令时自定义 esbuild 配置文件, 使用相对路径来置顶. 值得一提的事, 你的自定义配置将会和 elecrun 自己的 esbuild 配置合并, 并且自定义的配置优先级较高.
+
 
 ### 编译阶段
 
