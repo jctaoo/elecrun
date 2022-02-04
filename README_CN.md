@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./new-docs/static/img/logo.svg" width="150" height="150"/>
   <p>
-    <strong>elecrun</strong> 是一个简单快速地运行你的 electron app 的工具。
+    一个简简单单的工具: 你负责代码, <strong>elecrun</strong> 负责 electron
   </p>
   <p>
     <a href="https://github.com/jctaoo/electron-run/actions/workflows/CI.yml">
@@ -12,15 +12,15 @@
 
 [English Docs](./README.md)
 
-## 特征
+## 为什么使用?
 
-- 在 [Node.js](https://nodejs.org/zh-cn/) 里编写 JavaScript, [TypeScript](https://www.typescriptlang.org/) 而不需要任何配置
+- 现在你可以直接在 Electron 中使用 JavaScript 和 [TypeScript](https://www.typescriptlang.org/), 不用配置
 
-- 让 [Electron](https://www.electronjs.org/) 与任何前端框架一起工作
+- 在主进程中使用 [esbuild](https://esbuild.github.io/), 非常快 ⚡️
+  
+- 在渲染进程中使用 [vite](https://cn.vitejs.dev/), 非常快 ⚡️
 
-- 使用 [esbuild](https://esbuild.github.io/) 转换主进程代码,非常快 ⚡️
-
-- 在渲染进程中使用 [vite](https://cn.vitejs.dev/)
+- 顺带一提, elecrun 支持任何前端框架
 
 ## 快速开始
 
