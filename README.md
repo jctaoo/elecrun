@@ -1,6 +1,14 @@
-**electron-run** is a tool to run your electron app easily.
-
-[![CI](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml)
+<div align="center">
+  <img src="./new-docs/static/img/logo.svg" width="150" height="150"/>
+  <p>
+    <strong>elecrun</strong> is a tool to run your electron app easily.
+  </p>
+  <p>
+    <a href="https://github.com/jctaoo/electron-run/actions/workflows/CI.yml">
+      <img src="https://github.com/jctaoo/elecrun/actions/workflows/CI.yml/badge.svg"/>
+    </a>
+  </p>
+</div>
 
 ## Features
 
