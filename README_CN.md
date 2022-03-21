@@ -41,7 +41,7 @@ yarn global add electron-run
 # using npm
 npm install electron-run --save-dev
 # using yarn
-yarn global add electron-run --dev
+yarn add electron-run --dev
 ```
 
 ### 创建并运行 Electron 应用
