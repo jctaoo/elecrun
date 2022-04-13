@@ -15,8 +15,9 @@ export const cannotFoundViteConfigMessage = (writePath: string): string =>
     `Could not find a valid vite config. A default one has been written in:\n`
   ) + writePath;
 
-export const cannotFoundESBuildConfigMessage: string =
-  yellow(`Could not find the specified esbuild config.`);
+export const cannotFoundESBuildConfigMessage: string = yellow(
+  `Could not find the specified esbuild config.`
+);
 
 export const cannotFoundEntryScriptOrViteRootPath = (cwd: string): string =>
   red(

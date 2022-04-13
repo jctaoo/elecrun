@@ -18,14 +18,12 @@ import { MainCommand } from '../types';
 import { exists } from '../utils';
 
 function transformErrors(error: BuildFailure): CompileError[] {
-  return error.errors.map(
-    (e): CompileError => {
-      return {
-        location: e.location,
-        message: e.text,
-      };
-    }
-  );
+  return error.errors.map((e): CompileError => {
+    return {
+      location: e.location,
+      message: e.text,
+    };
+  });
 }
 
 async function findExternal(): Promise<string[]> {
@@ -86,13 +84,13 @@ export const loadESBuildConfigFromFile = (
 /** Attempt to return esbuild from the project, if it exists */
 const findESBuildForProject = () => {
   const esBuildPath = path.join(PathManager.shard.nodeModulesPath, 'esbuild');
-  if(fs.existsSync(esBuildPath)) {
-    console.log("Using esbuild from ", esBuildPath)
-    return require(esBuildPath)
+  if (fs.existsSync(esBuildPath)) {
+    console.log('Using esbuild from ', esBuildPath);
+    return require(esBuildPath);
   } else {
-    return require('esbuild')
+    return require('esbuild');
   }
-}
+};
 
 export const runESBuildForMainProcess: MainCommand = async (
   { isBuild, outDir, preloadScript, entryPath, esbuildConfigFile },
@@ -101,7 +99,6 @@ export const runESBuildForMainProcess: MainCommand = async (
   buildComplete,
   notFoundTSConfig
 ) => {
-
   const esbuild = findESBuildForProject();
 
   // Load esbuild config file supplied by user

@@ -57,13 +57,8 @@ export async function run(options: {
   viteRoot?: string;
   esbuildConfigFile?: string;
 }) {
-  const {
-    withVite,
-    preloadScript,
-    entry,
-    viteRoot,
-    esbuildConfigFile,
-  } = options;
+  const { withVite, preloadScript, entry, viteRoot, esbuildConfigFile } =
+    options;
 
   // Start vite server
   if (withVite) {

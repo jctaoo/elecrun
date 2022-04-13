@@ -33,7 +33,9 @@ async function rmRecursively(path: string, excludes?: Array<string>) {
     } else if (!stat.isDirectory()) {
       await fs.promises.rm(last);
     } else {
-      const children = await (await fs.promises.readdir(last)).map((p) => {
+      const children = await (
+        await fs.promises.readdir(last)
+      ).map((p) => {
         return join(last, p);
       });
       if (children.length === 0) {
