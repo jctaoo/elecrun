@@ -32,7 +32,6 @@ program
         esbuildConfigFile: string;
       }
     ) => {
-      console.log(options.cleanCache);
       const withVite = !!options.vite;
       let viteRootPath: string | undefined;
 
