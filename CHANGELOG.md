@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [2.3.0](https://github.com/jctaoo/electron-run/compare/v2.2.0...v2.3.0) (2022-04-13)
 
+
+### Features
+
+- [#60](https://github.com/jctaoo/elecrun/pull/60): Support custom esbuild config by option `--esbuild-config-file`([doc](https://github.com/jctaoo/elecrun#option---esbuild-config-file)).
+- [#45](https://github.com/jctaoo/elecrun/pull/45): Migrate chalk to colorette.
+
 ## [2.2.0](https://github.com/jctaoo/electron-run/compare/v2.0.1...v2.2.0) (2021-08-08)
 
 
