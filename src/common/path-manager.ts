@@ -70,7 +70,7 @@ export class PathManager {
   }
 
   public get devPath() {
-    return path.join(this.nodeModulesPath, '.electron-run');
+    return path.join(this.nodeModulesPath, '.elecrun');
   }
 
   public get devOutPath() {

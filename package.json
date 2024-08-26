@@ -1,7 +1,7 @@
 {
   "name": "elecrun",
   "version": "2.4.0",
-  "description": "electron-run is a tool to run your electron app easily.",
+  "description": "elecrun is a tool to run your electron app easily.",
   "main": "build/main/src/index.js",
   "bin": {
     "electron-run": "bin/elecrun.js",
@@ -9,7 +9,7 @@
   },
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "repository": "https://github.com/jctaoo/electron-run",
+  "repository": "https://github.com/jctaoo/elecrun",
   "license": "MIT",
   "keywords": [
     "typescript",
@@ -38,7 +38,8 @@
     "version": "standard-version",
     "version:major": "standard-version -r major",
     "version:minor": "standard-version -r minor",
-    "version:patch": "standard-version -r patch"
+    "version:patch": "standard-version -r patch",
+    "prepublishOnly": "run-s test"
   },
   "engines": {
     "node": ">=10"
@@ -79,7 +80,9 @@
   },
   "files": [
     "build/main",
+    "build/main/package.json",
     "build/module",
+    "build/module/package.json",
     "!tests/**/*.test.ts",
     "!**/*.json",
     "CHANGELOG.md",

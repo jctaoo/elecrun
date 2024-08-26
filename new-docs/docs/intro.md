@@ -27,7 +27,7 @@ sidebar_position: 1
 
 
 
-还需要更多模版项目？[告诉我们你想要的模版](https://github.com/jctaoo/electron-run/issues)
+还需要更多模版项目？[告诉我们你想要的模版](https://github.com/jctaoo/elecrun/issues)
 
 ## 快速入门 ⏱️
 
@@ -113,8 +113,8 @@ yarn dev
 
 你可以在下面的链接中找到这个简易项目的源码
 
-- [TypeScript 版本](https://github.com/jctaoo/electron-run/tree/main/fixtures/demo)
-- [JavaScript 版本](https://github.com/jctaoo/electron-run/tree/main/fixtures/simple)
+- [TypeScript 版本](https://github.com/jctaoo/elecrun/tree/main/fixtures/demo)
+- [JavaScript 版本](https://github.com/jctaoo/elecrun/tree/main/fixtures/simple)
 
 ## elecrun 功能
 

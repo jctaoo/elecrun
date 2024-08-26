@@ -1,6 +1,6 @@
-**electron-run** is a tool to run your electron app easily.
+**elecrun** is a tool to run your electron app easily.
 
-[![CI](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml)
+[![CI](https://github.com/jctaoo/elecrun/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/elecrun/actions/workflows/CI.yml)
 
 ## Features
 
@@ -20,18 +20,18 @@
 
 ```shell
 # using npm
-npm install -g electron-run
+npm install -g elecrun
 # using yarn
-yarn global add electron-run
+yarn global add elecrun
 ```
 
 - Install as devDependencies
 
 ```shell
 # using npm
-npm install electron-run --save-dev
+npm install elecrun --save-dev
 # using yarn
-yarn global add electron-run --dev
+yarn global add elecrun --dev
 ```
 
 ### Create & Run electron app
@@ -96,7 +96,7 @@ index.html
 }
 ```
 
-> `elecrun` is alias of `electron-run`
+> `elecrun` is alias of `elecrun`
 
 #### ⚡️ Start your electron app
 
@@ -108,14 +108,14 @@ yarn dev
 
 #### Source codes
 
-- https://github.com/jctaoo/electron-run/tree/main/fixtures/demo
-- https://github.com/jctaoo/electron-run/tree/main/fixtures/simple
+- https://github.com/jctaoo/elecrun/tree/main/fixtures/demo
+- https://github.com/jctaoo/elecrun/tree/main/fixtures/simple
 
 ## How it works
 
 ### Renderer Process
 
-`electron-run` using `vite` to handle code in renderer process.
+`elecrun` using `vite` to handle code in renderer process.
 
 The entry file is `index.html` in `root directory`(You can specify the root directory path, see [options --vite](#options---vite-renderer-root)) and vite using [esm](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) to struct your renderer process code.
 
@@ -127,11 +127,11 @@ For more information, see [vite official website](https://vitejs.dev)
 
 ### Main Process
 
-`electron-run` using `esbuild` to transform your code may cannot directly run in nodejs such as TypeScript and modern JavaScript to the code nodejs can handle. Besides, `electron-run` also bundle your code to one file.
+`elecrun` using `esbuild` to transform your code may cannot directly run in nodejs such as TypeScript and modern JavaScript to the code nodejs can handle. Besides, `elecrun` also bundle your code to one file.
 
-When you run `elecrun dev`, `electron-run` will try to find and read entry file(You can specify the entry file path, see [development phase](#development-phase)) then statically analyze to transform your code. After that, save the target code to your `node_modules/.electron-run` (there is one exception, see [options --preload](#options---preload-file)). Finally, `electron-run` will execute `electron` command line tool to start your app.
+When you run `elecrun dev`, `elecrun` will try to find and read entry file(You can specify the entry file path, see [development phase](#development-phase)) then statically analyze to transform your code. After that, save the target code to your `node_modules/.elecrun` (there is one exception, see [options --preload](#options---preload-file)). Finally, `elecrun` will execute `electron` command line tool to start your app.
 
-When your main process code has been changed, `electron-run` will ask if you want to rerun your app. This is useful when you don’t want to interrupt the current debugging.
+When your main process code has been changed, `elecrun` will ask if you want to rerun your app. This is useful when you don’t want to interrupt the current debugging.
 
 ## Guide
 
@@ -145,7 +145,7 @@ elecrun dev --vite
 elecrun --vite
 ```
 
-The full version of dev command is `elecrun [file-entry] [options]`. The only argument is `file-entry` that indicates the path of entry script for main process. You can specify this or `electron-run` will automatically find the entry script path by the following list:
+The full version of dev command is `elecrun [file-entry] [options]`. The only argument is `file-entry` that indicates the path of entry script for main process. You can specify this or `elecrun` will automatically find the entry script path by the following list:
 
 - ./src/main/index.js
 - ./src/main/index.ts
@@ -162,9 +162,9 @@ elecrun dev ./main.ts
 
 #### options `--vite [renderer root]`
 
-The option `--vite` means run vite server with `electron-run`. If you don't want using `vite`, just remove this option.
+The option `--vite` means run vite server with `elecrun`. If you don't want using `vite`, just remove this option.
 
-The 'renderer root' is the root directory for vite. You can specify this or `electron-run`
+The 'renderer root' is the root directory for vite. You can specify this or `elecrun`
 will automatically find the root directory by the following list:
 
 - ./src/renderer/
@@ -179,7 +179,7 @@ elecrun dev --vite ./src
 
 #### options `--preload <file>`
 
-When you enable `contextIsolation`, you may need `preload` (You can find in [BrowserWindow options](https://www.electronjs.org/docs/api/browser-window#browserwindow)). But Electron loads your preload script based on string variable. It's means `esbuild` cannot statically analyze the location of preload script or bundle it. The solution is to provide an option `--preload` to specify location of preload script. Then, `electron-run` just transform it and save preload code's target code in the same path as bundled code.
+When you enable `contextIsolation`, you may need `preload` (You can find in [BrowserWindow options](https://www.electronjs.org/docs/api/browser-window#browserwindow)). But Electron loads your preload script based on string variable. It's means `esbuild` cannot statically analyze the location of preload script or bundle it. The solution is to provide an option `--preload` to specify location of preload script. Then, `elecrun` just transform it and save preload code's target code in the same path as bundled code.
 
 The parameter `<file>` should be set as preload script path relative to the main src. Example:
 
@@ -201,11 +201,11 @@ elecrun --vite --preload preload.ts
 
 #### option `--clean-cache`
 
-`dev` command save the build artifact to `node_modules/.electron-run/app` under your project by default. But sometimes you want to clean these files. This options help you clean cache files when you run `dev` command.
+`dev` command save the build artifact to `node_modules/.elecrun/app` under your project by default. But sometimes you want to clean these files. This options help you clean cache files when you run `dev` command.
 
 #### options `--esm`
 
-The `--esm` option is used to specify whether to use ESM modules to run the main process code. By default, `electron-run` uses `commonjs` modules to run the main process code. If you want to use ESM modules, just add this option.
+The `--esm` option is used to specify whether to use ESM modules to run the main process code. By default, `elecrun` uses `commonjs` modules to run the main process code. If you want to use ESM modules, just add this option.
 
 > Some third-party libraries only support `esm` modules. When using such third-party libraries, you may need to add this option.
 
@@ -215,4 +215,4 @@ The build phase is almost the same as the development phase (also including all 
 
 ### clean output
 
-run `elecrun clean` to easily clean output by `electron-run`
+run `elecrun clean` to easily clean output by `elecrun`

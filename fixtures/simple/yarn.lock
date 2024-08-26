@@ -156,7 +156,7 @@ duplexer3@^0.1.4:
   resolved "https://registry.npmjs.org/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
-"electron-run@file:../..":
+"elecrun@file:../..":
   version "2.2.0"
   dependencies:
     colorette "^2.0.16"
