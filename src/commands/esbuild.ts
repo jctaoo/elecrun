@@ -5,6 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 
+import { yellow } from 'colorette';
 import { BuildFailure, BuildOptions } from 'esbuild';
 
 import {
@@ -16,7 +17,6 @@ import {
 } from '../common';
 import { MainCommand } from '../types';
 import { exists } from '../utils';
-import { yellow } from 'colorette';
 
 function transformErrors(error: BuildFailure): CompileError[] {
   return error.errors.map((e): CompileError => {
