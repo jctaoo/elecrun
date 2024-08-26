@@ -1,5 +1,5 @@
 {
-  "name": "electron-run",
+  "name": "elecrun",
   "version": "2.4.0",
   "description": "electron-run is a tool to run your electron app easily.",
   "main": "build/main/src/index.js",
@@ -38,8 +38,7 @@
     "version": "standard-version",
     "version:major": "standard-version -r major",
     "version:minor": "standard-version -r minor",
-    "version:patch": "standard-version -r patch",
-    "prepublishOnly": "run-s test"
+    "version:patch": "standard-version -r patch"
   },
   "engines": {
     "node": ">=10"
