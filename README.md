@@ -1,3 +1,5 @@
+> From version 2.4.0, using package `elecrun` instead of `electron-run`.
+
 **electron-run** is a tool to run your electron app easily.
 
 [![CI](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml)

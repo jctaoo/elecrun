@@ -1,3 +1,5 @@
+> 从 2.4.0 开始, 使用 `elecrun` 而不是 `electron-run` 包。
+
 **electron-run** 是一个简单快速地运行你的 electron app 的工具。
 
 [![CI](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml)
