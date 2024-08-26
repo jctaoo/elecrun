@@ -1,26 +1,16 @@
-<div align="center">
-  <img src="./new-docs/static/img/logo.svg" width="150" height="150"/>
-  <p>
-    一个简简单单的工具: 你负责代码, <strong>elecrun</strong> 负责 electron
-  </p>
-  <p>
-    <a href="https://github.com/jctaoo/electron-run/actions/workflows/CI.yml">
-      <img src="https://github.com/jctaoo/elecrun/actions/workflows/CI.yml/badge.svg"/>
-    </a>
-  </p>
-</div>
+**electron-run** 是一个简单快速地运行你的 electron app 的工具。
 
-[English Docs](./README.md)
+[![CI](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml)
 
-## 为什么使用?
+## 特征
 
-- 现在你可以直接在 Electron 中使用 JavaScript 和 [TypeScript](https://www.typescriptlang.org/), 不用配置
+- 在 [Node.js](https://nodejs.org/zh-cn/) 里编写 JavaScript, [TypeScript](https://www.typescriptlang.org/) 而不需要任何配置
 
-- 在主进程中使用 [esbuild](https://esbuild.github.io/), 非常快 ⚡️
-  
-- 在渲染进程中使用 [vite](https://cn.vitejs.dev/), 非常快 ⚡️
+- 让 [Electron](https://www.electronjs.org/) 与任何前端框架一起工作
 
-- 顺带一提, elecrun 支持任何前端框架
+- 使用 [esbuild](https://esbuild.github.io/) 转换主进程代码,非常快 ⚡️
+
+- 在渲染进程中使用 [vite](https://cn.vitejs.dev/)
 
 ## 快速开始
 
@@ -41,12 +31,12 @@ yarn global add electron-run
 # using npm
 npm install electron-run --save-dev
 # using yarn
-yarn add electron-run --dev
+yarn global add electron-run --dev
 ```
 
 ### 创建并运行 Electron 应用
 
-#### 开始一个全新的项目
+#### 开始一个新的项目
 
 ```shell
 # 创建项目目录
@@ -106,6 +96,8 @@ index.html
 }
 ```
 
+> `elecrun` 是 `electron-run` 的别名
+
 #### ⚡️ 开始运行您的 Electron 程序
 
 ```shell
@@ -119,7 +111,7 @@ yarn dev
 - https://github.com/jctaoo/electron-run/tree/main/fixtures/demo
 - https://github.com/jctaoo/electron-run/tree/main/fixtures/simple
 
-## 它是如何工作的
+## 工作原理
 
 ### 渲染进程
 
@@ -209,10 +201,13 @@ elecrun --vite --preload preload.ts
 
 `dev` 命令会存一些打包产物在 `node_modules/.electron-run/app` 下, 这条命令帮助你在开始 `dev` 前清除掉这些缓存.
 
-#### 选项 `--esbuild-config-file`
+#### 选项 `--esm`
 
-运行在使用 `dev` 和 `build` 命令时自定义 esbuild 配置文件, 使用相对路径来置顶. 值得一提的事, 你的自定义配置将会和 elecrun 自己的 esbuild 配置合并, 并且自定义的配置优先级较高.
+`--esm` 选项用于指定是否使用 ESM 模块来运行主进程代码. 默认情况下, `electron-run` 会使用 `commonjs` 模块来运行主进程代码. 如果您想使用 ESM 模块, 只需添加该选项即可.
 
+> 有一些第三方库仅仅支持 `esm` 模块, 使用这样的第三方库时, 您可能需要添加该选项.
+
+```shell
 
 ### 编译阶段
 

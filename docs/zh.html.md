@@ -36,7 +36,7 @@ yarn global add electron-run --dev
 
 ### 创建并运行 Electron 应用
 
-#### 开始一个新等项目
+#### 开始一个新的项目
 
 ```shell
 # 创建项目目录
@@ -111,7 +111,7 @@ yarn dev
 - https://github.com/jctaoo/electron-run/tree/main/fixtures/demo
 - https://github.com/jctaoo/electron-run/tree/main/fixtures/simple
 
-## 它是如何工作的
+## 工作原理
 
 ### 渲染进程
 
@@ -199,7 +199,15 @@ elecrun --vite --preload preload.ts
 
 #### 选项 `--clean-cache`
 
-`dev` command save the build artifacts to `node_modules/.electron-run/app` under your project by default. But sometimes you want to clean these files. This options help you clean cache files when you run `dev` command.
+`dev` 命令会存一些打包产物在 `node_modules/.electron-run/app` 下, 这条命令帮助你在开始 `dev` 前清除掉这些缓存.
+
+#### 选项 `--esm`
+
+`--esm` 选项用于指定是否使用 ESM 模块来运行主进程代码. 默认情况下, `electron-run` 会使用 `commonjs` 模块来运行主进程代码. 如果您想使用 ESM 模块, 只需添加该选项即可.
+
+> 有一些第三方库仅仅支持 `esm` 模块, 使用这样的第三方库时, 您可能需要添加该选项.
+
+```shell
 
 ### 编译阶段
 

@@ -56,6 +56,7 @@ export async function run(options: {
   entry?: string;
   viteRoot?: string;
   esbuildConfigFile?: string;
+  mainProcessEsm?: boolean;
 }) {
   const { withVite, preloadScript, entry, viteRoot, esbuildConfigFile } =
     options;
@@ -102,6 +103,7 @@ export async function run(options: {
       preloadScript,
       entryPath: entryScriptPath,
       esbuildConfigFile,
+      format: options.mainProcessEsm ? 'esm' : 'cjs',
     },
     reportError,
     buildStart,

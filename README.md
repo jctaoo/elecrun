@@ -1,16 +1,6 @@
-<div align="center">
-  <img src="./new-docs/static/img/logo.svg" width="150" height="150"/>
-  <p>
-    <strong>elecrun</strong> is a tool to run your electron app easily.
-  </p>
-  <p>
-    <a href="https://github.com/jctaoo/electron-run/actions/workflows/CI.yml">
-      <img src="https://github.com/jctaoo/elecrun/actions/workflows/CI.yml/badge.svg"/>
-    </a>
-  </p>
-</div>
+**electron-run** is a tool to run your electron app easily.
 
-[中文文档](./README_CN.md)
+[![CI](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml/badge.svg)](https://github.com/jctaoo/electron-run/actions/workflows/CI.yml)
 
 ## Features
 
@@ -18,9 +8,9 @@
 
 - Let [Electron](https://www.electronjs.org/) work with any front-end framework.
 
-- Using [Esbuild](https://esbuild.github.io/) to transform your main process code, It's very fast ⚡️.
+- Using [esbuild](https://esbuild.github.io/) to transform your main process code, It's very fast ⚡️.
 
-- Using [Vite](https://vitejs.dev/) in renderer process.
+- Using [vite](https://vitejs.dev/) in renderer process.
 
 ## Quick Start
 
@@ -114,7 +104,7 @@ index.html
 yarn dev
 ```
 
-<center> <br><img width="500px" src="docs/images/screen-shot.webp"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">screen shot</div> <br></center>
+<center> <br><img width="500px" src="images/screen-shot.webp"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">screen shot</div> <br></center>
 
 #### Source codes
 
@@ -141,7 +131,7 @@ For more information, see [vite official website](https://vitejs.dev)
 
 When you run `elecrun dev`, `electron-run` will try to find and read entry file(You can specify the entry file path, see [development phase](#development-phase)) then statically analyze to transform your code. After that, save the target code to your `node_modules/.electron-run` (there is one exception, see [options --preload](#options---preload-file)). Finally, `electron-run` will execute `electron` command line tool to start your app.
 
-When your main process code has been changed, `electron-run` will ask if you want to rerun your app. This is useful when you don't want to interrupt the current debugging.
+When your main process code has been changed, `electron-run` will ask if you want to rerun your app. This is useful when you don’t want to interrupt the current debugging.
 
 ## Guide
 
@@ -151,7 +141,7 @@ run
 
 ```shell
 elecrun dev --vite
-# or
+# or 
 elecrun --vite
 ```
 
@@ -213,10 +203,11 @@ elecrun --vite --preload preload.ts
 
 `dev` command save the build artifact to `node_modules/.electron-run/app` under your project by default. But sometimes you want to clean these files. This options help you clean cache files when you run `dev` command.
 
-#### option `--esbuild-config-file`
+#### options `--esm`
 
-`dev` or `build` command to specify a custom esbuild configuration file relative to the project root- the default
-export from this file will be merged into the esbuild build options.
+The `--esm` option is used to specify whether to use ESM modules to run the main process code. By default, `electron-run` uses `commonjs` modules to run the main process code. If you want to use ESM modules, just add this option.
+
+> Some third-party libraries only support `esm` modules. When using such third-party libraries, you may need to add this option.
 
 ### build phase
 

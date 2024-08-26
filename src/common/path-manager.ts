@@ -77,6 +77,10 @@ export class PathManager {
     return path.join(this.devPath, 'app');
   }
 
+  public get devOutDirPackageJson() {
+    return path.join(this.devOutPath, 'package.json');
+  }
+
   public get srcPath() {
     return path.join(this.cwd, './src');
   }

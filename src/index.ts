@@ -21,6 +21,10 @@ program
     '--esbuild-config-file <file>',
     'Custom config js file to use with esbuild'
   )
+  .option(
+    '--esm',
+    'Use ESM instead of CJS for the main process. Default is CJS.'
+  )
   .option('--clean-cache', 'Clean build cache.')
   .action(
     async (
@@ -30,6 +34,7 @@ program
         preload: string;
         cleanCache: boolean;
         esbuildConfigFile: string;
+        esm: boolean;
       }
     ) => {
       const withVite = !!options.vite;
@@ -49,6 +54,7 @@ program
         preloadScript: options.preload,
         viteRoot: viteRootPath,
         esbuildConfigFile: options.esbuildConfigFile,
+        mainProcessEsm: options.esm,
       });
     }
   );

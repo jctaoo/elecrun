@@ -16,6 +16,7 @@ import {
 } from '../common';
 import { MainCommand } from '../types';
 import { exists } from '../utils';
+import { yellow } from 'colorette';
 
 function transformErrors(error: BuildFailure): CompileError[] {
   return error.errors.map((e): CompileError => {
@@ -92,8 +93,19 @@ const findESBuildForProject = () => {
   }
 };
 
+const writeOutDirPackageJson = async (esm: boolean) => {
+  const packageJsonPath = PathManager.shard.devOutDirPackageJson;
+  const packageJson = {
+    type: esm ? 'module' : 'commonjs',
+  };
+  await fs.promises.writeFile(
+    packageJsonPath,
+    JSON.stringify(packageJson, null, 2)
+  );
+};
+
 export const runESBuildForMainProcess: MainCommand = async (
-  { isBuild, outDir, preloadScript, entryPath, esbuildConfigFile },
+  { isBuild, outDir, preloadScript, entryPath, esbuildConfigFile, format },
   reportError,
   _buildStart,
   buildComplete,
@@ -115,7 +127,7 @@ export const runESBuildForMainProcess: MainCommand = async (
   const entryPoints = [entryPath];
   if (preloadScript) {
     if (!/^.*\.(js|ts|jsx|tsx)$/.test(preloadScript)) {
-      console.log(warnPreloadMessage);
+      console.log(yellow(`${warnPreloadMessage} ${preloadScript}`));
     }
     const preloadScriptPath = path.join(
       PathManager.shard.mainPath,
@@ -135,7 +147,7 @@ export const runESBuildForMainProcess: MainCommand = async (
       outdir: outDir,
       entryPoints: entryPoints,
       tsconfig: tsconfigPath,
-      format: 'cjs',
+      format: format,
       logLevel: 'silent',
       logLimit: 0,
       incremental: !isBuild,
@@ -159,6 +171,7 @@ export const runESBuildForMainProcess: MainCommand = async (
     });
     count++;
     buildComplete(outDir, count);
+    await writeOutDirPackageJson(format === 'esm');
   } catch (e) {
     if (!!e.errors && !!e.errors.length && e.errors.length > 0) {
       const error = e as BuildFailure;

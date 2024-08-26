@@ -7,6 +7,7 @@ export type MainCommand = (
     preloadScript?: string;
     entryPath: string;
     esbuildConfigFile?: string /** Config js file to use with esbuild */;
+    format?: 'cjs' | 'esm';
   },
   reportError: (...errs: CompileError[]) => void,
   buildStart: () => void,
