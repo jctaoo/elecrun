@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [2.4.3](https://github.com/jctaoo/elecrun/compare/v2.4.2...v2.4.3) (2024-08-27)
 
+### Features
+
+- fix preload scripts in build phase and support esm option.
+
 ### [2.4.2](https://github.com/jctaoo/elecrun/compare/v2.4.1...v2.4.2) (2024-08-27)
 
 ### [2.4.1](https://github.com/jctaoo/elecrun/compare/v2.4.0...v2.4.1) (2024-08-27)
