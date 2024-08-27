@@ -177,10 +177,13 @@ export const runESBuildForMainProcess: MainCommand = async (
       ...esbuildConfigExtra,
     });
     // build preload script
-    if (PathManager.shard.preloadScriptPath && await exists(PathManager.shard.preloadScriptPath)) {
+    if (
+      PathManager.shard.preloadScriptPath &&
+      (await exists(PathManager.shard.preloadScriptPath))
+    ) {
       await esbuild.build({
-        outdir: outDir,
-        format: "cjs",
+        outfile: path.join(outDir, 'preload.cjs'),
+        format: 'cjs',
         entryPoints: [PathManager.shard.preloadScriptPath],
         ...commonEsbuildConfig,
         watch: !isBuild
