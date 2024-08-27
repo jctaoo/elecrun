@@ -45,6 +45,10 @@ export class PathManager {
     this._preloadScriptPath = path;
   }
 
+  public get preloadScriptPath() {
+    return this._preloadScriptPath;
+  }
+
   public get nodeModulesPath() {
     return path.join(this.cwd, './node_modules');
   }

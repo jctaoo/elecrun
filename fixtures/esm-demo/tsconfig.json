@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+		"module": "node16",
+		"moduleResolution": "node16",
+		"moduleDetection": "force",
+    "target": "ESNext",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "strictBindCallApply": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "baseUrl": "./src"
+  },
+  "exclude": ["node_modules", "app", "dist"]
+}

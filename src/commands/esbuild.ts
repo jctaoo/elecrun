@@ -134,7 +134,9 @@ export const runESBuildForMainProcess: MainCommand = async (
       preloadScript
     );
     if (await exists(preloadScriptPath)) {
-      entryPoints.push(preloadScriptPath);
+      // entryPoints.push(preloadScriptPath);
+      // should buid preload script standalone
+
       // Only valid during the development phase
       if (!isBuild) {
         PathManager.shard.setPreloadScriptPath(preloadScriptPath);
@@ -142,19 +144,24 @@ export const runESBuildForMainProcess: MainCommand = async (
     }
   }
 
+  const commonEsbuildConfig = {
+    tsconfig: tsconfigPath,
+    logLevel: 'silent',
+    logLimit: 0,
+    incremental: !isBuild,
+    platform: 'node',
+    sourcemap: true,
+    bundle: true,
+    external: externals,
+  };
+
   try {
+    // build main process
     await esbuild.build({
       outdir: outDir,
-      entryPoints: entryPoints,
-      tsconfig: tsconfigPath,
       format: format,
-      logLevel: 'silent',
-      logLimit: 0,
-      incremental: !isBuild,
-      platform: 'node',
-      sourcemap: true,
-      bundle: true,
-      external: externals,
+      entryPoints: entryPoints,
+      ...commonEsbuildConfig,
       watch: !isBuild
         ? {
             onRebuild: async (error: BuildFailure) => {
@@ -169,6 +176,29 @@ export const runESBuildForMainProcess: MainCommand = async (
         : false,
       ...esbuildConfigExtra,
     });
+    // build preload script
+    if (PathManager.shard.preloadScriptPath && await exists(PathManager.shard.preloadScriptPath)) {
+      await esbuild.build({
+        outdir: outDir,
+        format: "cjs",
+        entryPoints: [PathManager.shard.preloadScriptPath],
+        ...commonEsbuildConfig,
+        watch: !isBuild
+          ? {
+              onRebuild: async (error: BuildFailure) => {
+                if (error) {
+                  reportError(...transformErrors(error));
+                } else {
+                  count++;
+                  buildComplete(outDir, count);
+                }
+              },
+            }
+          : false,
+        ...esbuildConfigExtra,
+      });
+    }
+
     count++;
     buildComplete(outDir, count);
     await writeOutDirPackageJson(format === 'esm');
