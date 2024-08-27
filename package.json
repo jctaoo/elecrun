@@ -1,6 +1,6 @@
 {
   "name": "elecrun",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "elecrun is a tool to run your electron app easily.",
   "main": "build/main/src/index.js",
   "bin": {
