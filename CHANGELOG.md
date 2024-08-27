@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [2.4.1](https://github.com/jctaoo/elecrun/compare/v2.4.0...v2.4.1) (2024-08-27)
 
+### Features
+
+- Fix the behavior of building prelaod script, now this building phase of preload script is standlone.
+
 ## [2.4.0](https://github.com/jctaoo/elecrun/compare/v2.3.1...v2.4.0) (2024-08-26)
 
 ### Features
