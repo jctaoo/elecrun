@@ -15,12 +15,14 @@ interface RunBuildOptions {
   entry?: string /** Entry Point */;
   preloadScript?: string /** Filename of the preload script */;
   esbuildConfigFile?: string /** Filename of the esbuild config to use */;
+  mainProcessEsm?: boolean /** Use ESM for the main process */;
 }
 
 export async function runBuild({
   entry,
   preloadScript,
   esbuildConfigFile,
+  mainProcessEsm,
 }: RunBuildOptions) {
   // find entry first
   // TODO move to PathManager.ts
@@ -45,6 +47,7 @@ export async function runBuild({
       preloadScript,
       entryPath: entryScriptPath,
       esbuildConfigFile,
+      format: mainProcessEsm ? 'esm' : 'cjs',
     },
     (...errors) => diagnose(...errors),
     () => console.log(startMessage),

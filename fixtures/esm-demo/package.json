@@ -6,7 +6,7 @@
   "scripts": {
     "elecrun": "elecrun",
     "dev": "elecrun --vite --preload preload.ts --esm",
-    "build": "elecrun build",
+    "build": "elecrun build --preload preload.ts --esm",
     "clean": "elecrun clean"
   },
   "devDependencies": {
@@ -14,7 +14,6 @@
     "vite": "^2.1.5"
   },
   "dependencies": {
-    "electron": "^32.0.1",
-    "elecrun": "file:../../"
+    "electron": "^32.0.1"
   }
 }

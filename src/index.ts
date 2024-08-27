@@ -70,15 +70,20 @@ program
     '--esbuild-config-file <file>',
     'Custom config js file to use with esbuild'
   )
+  .option(
+    '--esm',
+    'Use ESM instead of CJS for the main process. Default is CJS.'
+  )
   .action(
     async (
       entryFile: string | undefined,
-      options: { preload: string; esbuildConfigFile: string }
+      options: { preload: string; esbuildConfigFile: string; esm: boolean }
     ) => {
       await runBuild({
         preloadScript: options.preload,
         entry: entryFile,
         esbuildConfigFile: options.esbuildConfigFile,
+        mainProcessEsm: options.esm,
       });
     }
   );
