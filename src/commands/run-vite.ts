@@ -63,8 +63,6 @@ export async function startViteServer(options: {
 
   await server.listen();
 
-  // TODO fix eslint
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const address = server.httpServer!.address();
   if (address && typeof address === 'object') {
     const port = address.port;
