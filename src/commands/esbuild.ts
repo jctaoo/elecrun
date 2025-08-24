@@ -4,7 +4,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import url from 'url';
 
 import { yellow } from 'colorette';
 import { BuildFailure, BuildOptions } from 'esbuild';
