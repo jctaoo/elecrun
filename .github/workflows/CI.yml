@@ -24,12 +24,12 @@ jobs:
         with:
           node-version: '14'
           check-latest: true
-      - run: corepack enable yarn
+      - run: corepack enable pnpm
 
       - name: install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --immutable
+          pnpm install --frozen-lockfile
 
       - name: Prettify code
         run: |
@@ -39,7 +39,7 @@ jobs:
       - name: install dependencies for fixtures
         run: |
           cd fixtures/demo
-          yarn install --immutable
+          yarn install --frozen-lockfile
           cd ../../
 
       - name: gabrielbb/xvfb-action
@@ -48,9 +48,3 @@ jobs:
           working-directory: ./
           run: yarn test
 
-      - name: publish docs
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: ./docs
-          commit_message: '[ci skip] Updates'
