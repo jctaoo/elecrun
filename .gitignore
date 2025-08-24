@@ -9,10 +9,29 @@ coverage
 package-lock.json
 docs/dist
 
-# yarn berry
-.yarn/install-state.gz
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/patches
-.pnp.*
+# ---------- Universal (any depth) ----------
+# Build / caches anywhere
+**/dist/
+**/build/
+**/node_modules/
+**/.cache/
+**/.parcel-cache/
+**/.turbo/
+
+# Yarn Berry (v2+), at any depth
+**/.yarn/*
+!**/.yarn/patches
+!**/.yarn/plugins
+!**/.yarn/releases
+!**/.yarn/sdks
+!**/.yarn/versions
+
+# Keep Yarn config files anywhere
+!**/.yarnrc.yml
+
+# Ignore cache by default (turn this OFF if you use zero-installs)
+**/.yarn/cache/
+
+# Yarn PnP files should be committed (don’t ignore)
+!.pnp.cjs
+!.pnp.loader.mjs
