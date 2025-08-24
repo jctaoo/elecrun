@@ -59,12 +59,11 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/inquirer": "^7.3.1",
     "@types/jest": "^27.4.0",
-    "@types/node": "^14.14.37",
+    "@types/node": "^22.17.2",
     "@typescript-eslint/eslint-plugin": "^8.40.0",
     "@typescript-eslint/parser": "^8.40.0",
     "codecov": "^3.8.3",
     "cspell": "^5.15.2",
-    "cz-conventional-changelog": "^3.3.0",
     "electron": "^32.0.1",
     "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
@@ -109,11 +108,6 @@
       "tests/**/*.test.ts"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
   "prettier": {
     "singleQuote": true
   },
@@ -123,5 +117,5 @@
       "tests/**/*.test.js"
     ]
   },
-  "packageManager": "yarn@3.8.7"
+  "packageManager": "pnpm@9.15.2"
 }

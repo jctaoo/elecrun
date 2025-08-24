@@ -40,7 +40,7 @@ export async function startElectron({
     return () => {
       if (!called && electronProcess) {
         electronProcess.removeAllListeners();
-        process.kill(electronProcess.pid);
+        process.kill(electronProcess.pid!);
         exitByScripts = true;
       }
       called = true;

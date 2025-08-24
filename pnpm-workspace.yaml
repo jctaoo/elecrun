@@ -1,0 +1,5 @@
+packages:
+  # 主项目
+  - '.'
+  # fixtures目录下的示例项目  
+  - 'fixtures/*'
