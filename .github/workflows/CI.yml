@@ -24,10 +24,7 @@ jobs:
         with:
           node-version: '14'
           check-latest: true
-
-      - name: install yarn
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install yarn -g
+      - run: corepack enable yarn
 
       - name: install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
