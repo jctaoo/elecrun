@@ -69,7 +69,7 @@ export async function startViteServer(options: {
     console.log(
       green(consoleViteMessagePrefix),
       green(`Dev server running at: localhost:${port}`),
-      gray(`vite version: ${version}`),
+      gray(`vite version: ${version}`)
     );
   }
 }
