@@ -18,7 +18,7 @@ jobs:
         id: cache
         with:
           path: '**/**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - uses: actions/setup-node@v4
         with:
@@ -31,20 +31,15 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
 
-      - name: Prettify code
-        run: |
-          echo "Prettifying code"
-          yarn fix:prettier
-
       - name: install dependencies for fixtures
         run: |
           cd fixtures/demo
-          yarn install --frozen-lockfile
+          pnpm install --frozen-lockfile
           cd ../../
 
       - name: gabrielbb/xvfb-action
         uses: GabrielBB/xvfb-action@v1.4
         with:
           working-directory: ./
-          run: yarn test
+          run: pnpm run test
 
