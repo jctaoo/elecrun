@@ -22,9 +22,9 @@ describe('test run electron', () => {
     await delay(200);
     for (const [i, cp] of processList.entries()) {
       if (i + 1 < COUNT) {
-        expect(await pidExists(cp.pid)).toBe(false);
+        expect(await pidExists(cp.pid!)).toBe(false);
       } else {
-        expect(await pidExists(cp.pid)).toBe(true);
+        expect(await pidExists(cp.pid!)).toBe(true);
       }
     }
 
@@ -45,9 +45,9 @@ describe('test run electron', () => {
 
             for (const [i, cp] of processList.entries()) {
               if (i + 1 < COUNT) {
-                expect(await pidExists(cp.pid)).toBe(false);
+                expect(await pidExists(cp.pid!)).toBe(false);
               } else {
-                expect(await pidExists(cp.pid)).toBe(true);
+                expect(await pidExists(cp.pid!)).toBe(true);
               }
             }
 

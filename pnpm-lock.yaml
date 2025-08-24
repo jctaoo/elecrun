@@ -112,18 +112,18 @@ importers:
   fixtures/demo:
     dependencies:
       elecrun:
-        specifier: file:../../
-        version: file:(@types/node@22.17.2)(electron@32.3.3)(jiti@2.5.1)
+        specifier: workspace:*
+        version: link:../..
       electron:
-        specifier: ^32.0.1
-        version: 32.3.3
+        specifier: 37.3.1
+        version: 37.3.1
     devDependencies:
       '@types/node':
-        specifier: ^22.5.0
-        version: 22.17.2
+        specifier: 24.3.0
+        version: 24.3.0
       vite:
-        specifier: ^2.1.5
-        version: 2.9.18
+        specifier: 7.1.3
+        version: 7.1.3(@types/node@24.3.0)(jiti@2.5.1)
 
   fixtures/esm-demo:
     dependencies:
@@ -146,7 +146,7 @@ importers:
     devDependencies:
       elecrun:
         specifier: file:../../
-        version: file:(@types/node@22.17.2)(electron@12.2.3)(jiti@2.5.1)
+        version: file:(@types/node@24.3.0)(electron@12.2.3)(jiti@2.5.1)
 
   fixtures/simple:
     dependencies:
@@ -156,7 +156,7 @@ importers:
     devDependencies:
       elecrun:
         specifier: file:../../
-        version: file:(@types/node@22.17.2)(electron@12.2.3)(jiti@2.5.1)
+        version: file:(@types/node@24.3.0)(electron@12.2.3)(jiti@2.5.1)
 
 packages:
 
@@ -988,6 +988,9 @@ packages:
   '@types/node@22.17.2':
     resolution: {integrity: sha512-gL6z5N9Jm9mhY+U2KXZpteb+09zyffliRkZyZOHODGATyC5B1Jt/7TzuuiLkFsSUMLbS1OLmlj/E+/3KF4Q/4w==}
 
+  '@types/node@24.3.0':
+    resolution: {integrity: sha512-aPTXCrfwnDLj4VvXrm+UUCQjNEvJgNA8s5F1cvwQU+3KNltTOkBm1j30uNLyqqPNe7gE3KFzImYoZEfLhp4Yow==}
+
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
@@ -1731,6 +1734,11 @@ packages:
 
   electron@32.3.3:
     resolution: {integrity: sha512-7FT8tDg+MueAw8dBn5LJqDvlM4cZkKJhXfgB3w7P5gvSoUQVAY6LIQcXJxgL+vw2rIRY/b9ak7ZBFbCMF2Bk4w==}
+    engines: {node: '>= 12.20.55'}
+    hasBin: true
+
+  electron@37.3.1:
+    resolution: {integrity: sha512-7DhktRLqhe6OJh/Bo75bTI0puUYEmIwSzMinocgO63mx3MVjtIn2tYMzLmAleNIlud2htkjpsMG2zT4PiTCloA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -3974,6 +3982,9 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
+  undici-types@7.10.0:
+    resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==}
+
   unique-string@2.0.0:
     resolution: {integrity: sha512-uNaeirEPvpZWSgzwsPGtU2zVSTrn/8L5q/IexZmH0eH6SA73CmAA5U4GwORTxQAZs95TAXLNqeLoPPNO5gZfWg==}
     engines: {node: '>=8'}
@@ -5082,7 +5093,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 14.18.63
+      '@types/node': 22.17.2
 
   '@types/minimist@1.2.5': {}
 
@@ -5095,6 +5106,10 @@ snapshots:
   '@types/node@22.17.2':
     dependencies:
       undici-types: 6.21.0
+
+  '@types/node@24.3.0':
+    dependencies:
+      undici-types: 7.10.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -5979,35 +5994,14 @@ snapshots:
 
   duplexer3@0.1.5: {}
 
-  elecrun@file:(@types/node@22.17.2)(electron@12.2.3)(jiti@2.5.1):
+  elecrun@file:(@types/node@24.3.0)(electron@12.2.3)(jiti@2.5.1):
     dependencies:
       colorette: 2.0.20
       commander: 7.2.0
       electron: 12.2.3
       esbuild: 0.25.9
       process-exists: 4.1.0
-      vite: 7.1.3(@types/node@22.17.2)(jiti@2.5.1)
-    transitivePeerDependencies:
-      - '@types/node'
-      - jiti
-      - less
-      - lightningcss
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - terser
-      - tsx
-      - yaml
-
-  elecrun@file:(@types/node@22.17.2)(electron@32.3.3)(jiti@2.5.1):
-    dependencies:
-      colorette: 2.0.20
-      commander: 7.2.0
-      electron: 32.3.3
-      esbuild: 0.25.9
-      process-exists: 4.1.0
-      vite: 7.1.3(@types/node@22.17.2)(jiti@2.5.1)
+      vite: 7.1.3(@types/node@24.3.0)(jiti@2.5.1)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -6035,6 +6029,14 @@ snapshots:
     dependencies:
       '@electron/get': 2.0.3
       '@types/node': 20.19.11
+      extract-zip: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+
+  electron@37.3.1:
+    dependencies:
+      '@electron/get': 2.0.3
+      '@types/node': 22.17.2
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -8723,6 +8725,8 @@ snapshots:
 
   undici-types@6.21.0: {}
 
+  undici-types@7.10.0: {}
+
   unique-string@2.0.0:
     dependencies:
       crypto-random-string: 2.0.0
@@ -8792,6 +8796,19 @@ snapshots:
       tinyglobby: 0.2.14
     optionalDependencies:
       '@types/node': 22.17.2
+      fsevents: 2.3.3
+      jiti: 2.5.1
+
+  vite@7.1.3(@types/node@24.3.0)(jiti@2.5.1):
+    dependencies:
+      esbuild: 0.25.9
+      fdir: 6.5.0(picomatch@4.0.3)
+      picomatch: 4.0.3
+      postcss: 8.5.6
+      rollup: 4.48.0
+      tinyglobby: 0.2.14
+    optionalDependencies:
+      '@types/node': 24.3.0
       fsevents: 2.3.3
       jiti: 2.5.1
 
