@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 import { green } from 'colorette';
-import { createServer, Plugin } from 'vite';
+import type { Plugin } from 'vite';
 
 import {
   consoleViteMessagePrefix,
@@ -52,6 +52,8 @@ export async function startViteServer(options: {
     notFoundViteConfig(writePath);
     viteConfigPath = writePath;
   }
+
+  const { createServer } = await import('vite');
 
   const server = await createServer({
     configFile: viteConfigPath,

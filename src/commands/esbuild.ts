@@ -136,7 +136,7 @@ export const runESBuildForMainProcess: MainCommand = async (
     if (await exists(preloadScriptPath)) {
       // entryPoints.push(preloadScriptPath);
       // should buid preload script standalone
-      
+
       PathManager.shard.setPreloadScriptPath(preloadScriptPath);
     }
   }
