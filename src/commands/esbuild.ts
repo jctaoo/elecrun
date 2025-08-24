@@ -16,7 +16,7 @@ import {
   warnPreloadMessage,
 } from '../common';
 import { MainCommand } from '../types';
-import { exists } from '../utils';
+import { exists, readJson } from '../utils';
 
 function transformErrors(error: BuildFailure): CompileError[] {
   return error.errors.map((e): CompileError => {
@@ -35,7 +35,7 @@ async function findExternal(): Promise<string[]> {
 
   const externals: Set<string> = new Set();
   const keys = ['dependencies', 'devDependencies', 'peerDependencies'];
-  const pkg = await import(PathManager.shard.packageJsonPath);
+  const pkg = await readJson(PathManager.shard.packageJsonPath);
 
   for (const key of keys) {
     const obj = pkg[key] ?? {};
@@ -58,9 +58,9 @@ async function findExternal(): Promise<string[]> {
 }
 
 /** When provided with a filename, loads the esbuild js config from the file as a default export */
-export const loadESBuildConfigFromFile = (
+export const loadESBuildConfigFromFile = async (
   file?: string
-): Partial<BuildOptions> => {
+): Promise<Partial<BuildOptions>> => {
   // No file provided
   if (!file) return {};
 
@@ -73,7 +73,7 @@ export const loadESBuildConfigFromFile = (
   }
 
   try {
-    return require(esbuildConfigPath);
+    return await import(esbuildConfigPath);
   } catch (e) {
     // File exists but could not be loaded
     console.error('Could not load provided esbuild config file, ignoring');
@@ -83,13 +83,13 @@ export const loadESBuildConfigFromFile = (
 };
 
 /** Attempt to return esbuild from the project, if it exists */
-const findESBuildForProject = () => {
+const findESBuildForProject = async () => {
   const esBuildPath = path.join(PathManager.shard.nodeModulesPath, 'esbuild');
   if (fs.existsSync(esBuildPath)) {
     console.log('Using esbuild from ', esBuildPath);
-    return require(esBuildPath);
+    return await import(esBuildPath);
   } else {
-    return require('esbuild');
+    return await import('esbuild');
   }
 };
 
@@ -111,10 +111,10 @@ export const runESBuildForMainProcess: MainCommand = async (
   buildComplete,
   notFoundTSConfig
 ) => {
-  const esbuild = findESBuildForProject();
+  const esbuild = await findESBuildForProject();
 
   // Load esbuild config file supplied by user
-  const esbuildConfigExtra = loadESBuildConfigFromFile(esbuildConfigFile);
+  const esbuildConfigExtra = await loadESBuildConfigFromFile(esbuildConfigFile);
 
   let tsconfigPath = path.join(PathManager.shard.mainPath, 'tsconfig.json');
   if (!fs.existsSync(tsconfigPath)) {
@@ -136,7 +136,7 @@ export const runESBuildForMainProcess: MainCommand = async (
     if (await exists(preloadScriptPath)) {
       // entryPoints.push(preloadScriptPath);
       // should buid preload script standalone
-      
+
       PathManager.shard.setPreloadScriptPath(preloadScriptPath);
     }
   }
@@ -202,10 +202,10 @@ export const runESBuildForMainProcess: MainCommand = async (
     count++;
     buildComplete(outDir, count);
     await writeOutDirPackageJson(format === 'esm');
-  } catch (e) {
+  } catch (error) {
+    const e = error as BuildFailure;
     if (!!e.errors && !!e.errors.length && e.errors.length > 0) {
-      const error = e as BuildFailure;
-      reportError(...transformErrors(error));
+      reportError(...transformErrors(e));
     }
   }
 };

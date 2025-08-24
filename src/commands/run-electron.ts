@@ -6,9 +6,6 @@ import { gray } from 'colorette';
 
 import { removeJunkTransformOptions } from '../utils';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const electron = require('electron');
-
 const stopList: Array<() => void> = [];
 let exitByScripts = false;
 
@@ -23,7 +20,13 @@ export async function startElectron({
     stop();
   }
 
-  const electronProcess = childProcess.spawn(electron, [path ?? '', '--color']);
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const electronPath = require('electron');
+
+  const electronProcess = childProcess.spawn(electronPath, [
+    path ?? '',
+    '--color',
+  ]);
   electronProcess.on('exit', (code) => {
     if (!exitByScripts) {
       console.log(gray(`Electron exited with code ${code}`));
@@ -37,7 +40,7 @@ export async function startElectron({
     return () => {
       if (!called && electronProcess) {
         electronProcess.removeAllListeners();
-        process.kill(electronProcess.pid);
+        process.kill(electronProcess.pid!);
         exitByScripts = true;
       }
       called = true;
@@ -55,13 +58,9 @@ export async function startElectron({
       removeJunkTransformOptions
     );
 
-    // TODO fix eslint
-
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     electronProcess
       .stdout!.pipe(removeElectronLoggerJunkOut)
       .pipe(process.stdout);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     electronProcess
       .stderr!.pipe(removeElectronLoggerJunkErr)
       .pipe(process.stderr);

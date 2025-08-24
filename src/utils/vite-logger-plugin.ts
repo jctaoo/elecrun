@@ -1,5 +1,5 @@
 import { gray, yellow } from 'colorette';
-import { Plugin } from 'vite';
+import type { Plugin } from 'vite';
 
 import { consoleViteMessagePrefix, PathManager } from '../common';
 

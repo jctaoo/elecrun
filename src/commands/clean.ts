@@ -16,9 +16,6 @@ async function rmRecursively(path: string, excludes?: Array<string>) {
   });
   let files: Array<string> = [path];
   while (files.length > 0) {
-    // TODO fix eslint
-
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const last = files.pop()!;
 
     const stat = await fs.promises.lstat(last);

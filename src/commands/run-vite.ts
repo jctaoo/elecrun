@@ -1,7 +1,7 @@
 import fs from 'fs';
 
-import { green } from 'colorette';
-import { createServer, Plugin } from 'vite';
+import { gray, green } from 'colorette';
+import type { Plugin } from 'vite';
 
 import {
   consoleViteMessagePrefix,
@@ -53,6 +53,8 @@ export async function startViteServer(options: {
     viteConfigPath = writePath;
   }
 
+  const { createServer, version } = await import('vite');
+
   const server = await createServer({
     configFile: viteConfigPath,
     logLevel: 'silent',
@@ -61,14 +63,13 @@ export async function startViteServer(options: {
 
   await server.listen();
 
-  // TODO fix eslint
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const address = server.httpServer!.address();
   if (address && typeof address === 'object') {
     const port = address.port;
     console.log(
       green(consoleViteMessagePrefix),
-      green(`Dev server running at: localhost:${port}`)
+      green(`Dev server running at: localhost:${port}`),
+      gray(`vite version: ${version}`)
     );
   }
 }

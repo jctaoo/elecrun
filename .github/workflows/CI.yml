@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -18,43 +18,28 @@ jobs:
         id: cache
         with:
           path: '**/**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '20'
           check-latest: true
-
-      - name: install yarn
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install yarn -g
+      - run: corepack enable pnpm
 
       - name: install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          yarn install
-          yarn global add npm-publish
-
-      - name: Prettify code
-        run: |
-          echo "Prettifying code"
-          yarn fix:prettier
+          pnpm install --frozen-lockfile
 
       - name: install dependencies for fixtures
         run: |
           cd fixtures/demo
-          yarn install
+          pnpm install --frozen-lockfile
           cd ../../
 
       - name: gabrielbb/xvfb-action
-        uses: GabrielBB/xvfb-action@v1.4
+        uses: GabrielBB/xvfb-action@v1.7
         with:
           working-directory: ./
-          run: yarn test
+          run: pnpm run test
 
-      - name: publish docs
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: ./docs
-          commit_message: '[ci skip] Updates'
