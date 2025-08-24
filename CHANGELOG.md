@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.4](https://github.com/jctaoo/elecrun/compare/v2.4.2...v2.4.4) (2025-08-24)
+
+
+### Bug Fixes
+
+* add missing newline at end of file in read-json.ts and update console log formatting in run-vite.ts ([b6861e1](https://github.com/jctaoo/elecrun/commit/b6861e11e5393721e2697d4dea65978adc52e37c))
+
 ### [2.4.3](https://github.com/jctaoo/elecrun/compare/v2.4.2...v2.4.3) (2024-08-27)
 
 ### Features
