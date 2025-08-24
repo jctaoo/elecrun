@@ -4,6 +4,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import url from 'url';
 
 import { yellow } from 'colorette';
 import { BuildFailure, BuildOptions } from 'esbuild';
@@ -73,7 +74,8 @@ export const loadESBuildConfigFromFile = async (
   }
 
   try {
-    return await import(esbuildConfigPath);
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require(esbuildConfigPath);
   } catch (e) {
     // File exists but could not be loaded
     console.error('Could not load provided esbuild config file, ignoring');
@@ -87,9 +89,11 @@ const findESBuildForProject = async () => {
   const esBuildPath = path.join(PathManager.shard.nodeModulesPath, 'esbuild');
   if (fs.existsSync(esBuildPath)) {
     console.log('Using esbuild from ', esBuildPath);
-    return await import(esBuildPath);
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require(esBuildPath);
   } else {
-    return await import('esbuild');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('esbuild');
   }
 };
 
