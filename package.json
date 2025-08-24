@@ -38,7 +38,7 @@
     "prepublishOnly": "run-s test"
   },
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=20"
   },
   "dependencies": {
     "colorette": "^2.0.16",
