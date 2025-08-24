@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "elecrun": "elecrun",
-    "dev": "elecrun --vite --preload preload.ts",
+    "dev": "elecrun --vite --preload preload.ts --esm",
     "build": "elecrun build",
     "clean": "elecrun clean"
   },

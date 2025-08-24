@@ -14,7 +14,7 @@ function createWindow() {
   });
 
   console.log('1 + 1 =', add(1, 1));
-  win.loadURL('http://localhost:3000').then();
+  win.loadURL('http://localhost:5173').then();
   win.webContents.openDevTools({ mode: 'detach' });
 }
 

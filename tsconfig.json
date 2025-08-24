@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "incremental": true,
-    "target": "es2017",
-    "outDir": "build/main",
+    "target": "ES2022",
     "rootDir": ".",
     "moduleResolution": "bundler",
     "module": "esnext",
@@ -43,7 +41,8 @@
   },
   "include": [
     "src/**/*.ts",
-    "tests/**/*.test.ts"
+    "tests/**/*.test.ts",
+    "tsup.config.ts"
   ],
   "exclude": ["node_modules/**"],
   "compileOnSave": false

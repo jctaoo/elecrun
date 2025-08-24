@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"moduleDetection": "force",
+    "target": "ESNext",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
@@ -16,7 +19,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
     "importHelpers": true,
     "sourceMap": true,
     "baseUrl": "./src"

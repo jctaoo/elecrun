@@ -83,7 +83,7 @@ export default defineConfig([globalIgnores([
         sourceType: "commonjs",
 
         parserOptions: {
-            project: ["./tsconfig.json", "./new-docs/tsconfig.json"],
+            project: ["./tsconfig.json"],
         },
     },
 }, {

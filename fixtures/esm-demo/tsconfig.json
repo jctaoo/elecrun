@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-		"module": "node16",
-		"moduleResolution": "node16",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
 		"moduleDetection": "force",
     "target": "ESNext",
     "noImplicitAny": true,

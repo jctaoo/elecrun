@@ -16,7 +16,7 @@ import {
   warnPreloadMessage,
 } from '../common';
 import { MainCommand } from '../types';
-import { exists } from '../utils';
+import { exists, readJson } from '../utils';
 
 function transformErrors(error: BuildFailure): CompileError[] {
   return error.errors.map((e): CompileError => {
@@ -35,7 +35,7 @@ async function findExternal(): Promise<string[]> {
 
   const externals: Set<string> = new Set();
   const keys = ['dependencies', 'devDependencies', 'peerDependencies'];
-  const pkg = await import(PathManager.shard.packageJsonPath);
+  const pkg = await readJson(PathManager.shard.packageJsonPath);
 
   for (const key of keys) {
     const obj = pkg[key] ?? {};

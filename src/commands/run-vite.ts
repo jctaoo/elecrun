@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { green } from 'colorette';
+import { gray, green } from 'colorette';
 import type { Plugin } from 'vite';
 
 import {
@@ -53,7 +53,7 @@ export async function startViteServer(options: {
     viteConfigPath = writePath;
   }
 
-  const { createServer } = await import('vite');
+  const { createServer, version } = await import('vite');
 
   const server = await createServer({
     configFile: viteConfigPath,
@@ -68,7 +68,8 @@ export async function startViteServer(options: {
     const port = address.port;
     console.log(
       green(consoleViteMessagePrefix),
-      green(`Dev server running at: localhost:${port}`)
+      green(`Dev server running at: localhost:${port}`),
+      gray(`vite version: ${version}`),
     );
   }
 }
