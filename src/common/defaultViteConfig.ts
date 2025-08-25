@@ -6,7 +6,7 @@ import { PathManager } from './pathManager';
 export const defaultViteConfig = (root: string): string => `
 import { defineConfig } from "vite";
 
-const rendererPath = "${root}";
+const rendererPath = ${JSON.stringify(root)};
 const outDirRenderer = "./build";
 
 export default defineConfig({
