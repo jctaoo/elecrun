@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.6](https://github.com/jctaoo/elecrun/compare/v2.4.5...v2.4.6) (2025-08-25)
+
+
+### Bug Fixes
+
+* update rendererPath assignment to use JSON.stringify for proper string formatting and modify removeJunkTransformOptions to use done() for early returns ([64f79c4](https://github.com/jctaoo/elecrun/commit/64f79c4e104b4316543aa96ed1ab97bcd64cf6fd))
+
 ### [2.4.5](https://github.com/jctaoo/elecrun/compare/v2.4.4...v2.4.5) (2025-08-24)
 
 ### Bug Fixes
