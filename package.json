@@ -43,7 +43,7 @@
     "colorette": "^2.0.16",
     "commander": "^7.2.0",
     "esbuild": "^0.14.11",
-    "process-exists": "^4.0.0",
+    "process-exists": "^5.0.0",
     "vite": "^7.1.3"
   },
   "devDependencies": {
