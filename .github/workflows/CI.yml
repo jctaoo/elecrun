@@ -15,6 +15,13 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Force LF globally before checkout
+        if: matrix.os == 'windows-latest'
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+        shell: bash
+
       - uses: actions/checkout@v4
 
       - uses: actions/cache@v4
