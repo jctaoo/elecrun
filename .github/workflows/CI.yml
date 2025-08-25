@@ -9,7 +9,10 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
@@ -24,22 +27,29 @@ jobs:
         with:
           node-version: '20'
           check-latest: true
-      - run: corepack enable pnpm
+      
+      - name: Enable pnpm
+        run: corepack enable pnpm
 
-      - name: install dependencies
+      - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           pnpm install --frozen-lockfile
 
-      - name: install dependencies for fixtures
+      - name: Install dependencies for fixtures
         run: |
           cd fixtures/demo
           pnpm install --frozen-lockfile
           cd ../../
 
-      - name: gabrielbb/xvfb-action
+      - name: Run tests on macOS
+        if: matrix.os == 'macos-latest'
         uses: GabrielBB/xvfb-action@v1.7
         with:
           working-directory: ./
           run: pnpm run test
+
+      - name: Run tests on Windows
+        if: matrix.os == 'windows-latest'
+        run: pnpm run test
 
