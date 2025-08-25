@@ -27,14 +27,14 @@
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:lint": "eslint src --ext .ts --fix",
-    "tsx": "tsx",
-    "electron": "electron",
     "doc": "vite docs",
     "version": "standard-version",
     "version:major": "standard-version -r major",
     "version:minor": "standard-version -r minor",
     "version:patch": "standard-version -r patch",
-    "prepublishOnly": "run-s test"
+    "prepublishOnly": "run-s test",
+    "tsx": "tsx",
+    "electron": "electron"
   },
   "engines": {
     "node": ">=20"
