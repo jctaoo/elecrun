@@ -1,3 +1,5 @@
+import { expect, it } from 'vitest';
+
 import { repeatString } from '../../src/utils';
 
 it('test repeat-string', () => {

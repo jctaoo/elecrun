@@ -1,6 +1,7 @@
 import { ChildProcess } from 'child_process';
 
 import pidExists from 'process-exists';
+import { describe, expect, it } from 'vitest';
 
 import { startElectron } from '../../src/commands';
 import { delay } from '../../src/utils';
@@ -13,7 +14,6 @@ describe('test run electron', () => {
 
     let stop = () => {};
     for (let i = 0; i < COUNT; i++) {
-      stop();
       const [cp, s] = await startElectron({ silent: true });
       stop = s;
       processList.push(cp);

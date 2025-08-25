@@ -1,5 +1,7 @@
 import stream from 'stream';
 
+import { describe, expect, it } from 'vitest';
+
 import { removeJunkTransformOptions } from '../../src/utils';
 
 describe('test remove junk', () => {

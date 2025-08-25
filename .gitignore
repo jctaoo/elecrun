@@ -9,6 +9,8 @@ coverage
 package-lock.json
 docs/dist
 
+.vscode/settings.json
+
 # ---------- Universal (any depth) ----------
 # Build / caches anywhere
 **/dist/
