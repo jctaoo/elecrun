@@ -32,7 +32,7 @@ export class PathManager {
     }
     const basename = path.basename(
       this._preloadScriptPath,
-      path.extname(this._preloadScriptPath)
+      path.extname(this._preloadScriptPath),
     );
     return path.join(this.devOutPath, basename + '.cjs.map');
   }

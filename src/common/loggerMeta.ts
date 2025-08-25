@@ -7,21 +7,21 @@ export const consoleViteMessagePrefix = '[vite]';
 
 export const cannotFoundTSConfigMessage = (writePath: string): string =>
   yellow(
-    `Could not find a valid 'tsconfig.json'. A default one has been written in:\n`
+    `Could not find a valid 'tsconfig.json'. A default one has been written in:\n`,
   ) + writePath;
 
 export const cannotFoundViteConfigMessage = (writePath: string): string =>
   yellow(
-    `Could not find a valid vite config. A default one has been written in:\n`
+    `Could not find a valid vite config. A default one has been written in:\n`,
   ) + writePath;
 
 export const cannotFoundESBuildConfigMessage: string = yellow(
-  `Could not find the specified esbuild config.`
+  `Could not find the specified esbuild config.`,
 );
 
 export const cannotFoundEntryScriptOrViteRootPath = (cwd: string): string =>
   red(
-    `Could not find the entry script path or vite root directory path for main process in ${cwd}. See the solutions below:`
+    `Could not find the entry script path or vite root directory path for main process in ${cwd}. See the solutions below:`,
   ) +
   cyan(`
   - 1. Add an argument that indicates the entry path for the main process and the option
@@ -45,12 +45,12 @@ export const cannotFoundEntryScriptOrViteRootPath = (cwd: string): string =>
 export const cannotFoundPackageJsonMessage =
   "Could not find a valid 'package.json'.";
 export const startMessage = cyan(
-  `${consoleMessagePrefix} Start compile main process...`
+  `${consoleMessagePrefix} Start compile main process...`,
 );
 export const finishMessage = green(
-  `${consoleMessagePrefix} Finished compiled. Rerun electron main process...`
+  `${consoleMessagePrefix} Finished compiled. Rerun electron main process...`,
 );
 export const finishBuildMessage = green(
-  `${consoleMessagePrefix} Finish Build.`
+  `${consoleMessagePrefix} Finish Build.`,
 );
 export const warnPreloadMessage = `warn preload path.`;

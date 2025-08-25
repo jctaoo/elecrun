@@ -54,7 +54,7 @@ export const defaultRendererTSConfig = {
 
 async function writeTSConfig<Config>(
   config: Config,
-  dir: string
+  dir: string,
 ): Promise<string> {
   await fs.promises.mkdir(dir, { recursive: true });
   const str = JSON.stringify(config);
@@ -72,5 +72,5 @@ export const writeMainTSConfig = () =>
 export const writeRendererTSConfig = () =>
   writeTSConfig(
     defaultRendererTSConfig,
-    PathManager.shard.defaultRendererTSConfigDir
+    PathManager.shard.defaultRendererTSConfigDir,
   );

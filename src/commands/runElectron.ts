@@ -52,10 +52,10 @@ export async function startElectron({
 
   if (!silent) {
     const removeElectronLoggerJunkOut = new stream.Transform(
-      removeJunkTransformOptions
+      removeJunkTransformOptions,
     );
     const removeElectronLoggerJunkErr = new stream.Transform(
-      removeJunkTransformOptions
+      removeJunkTransformOptions,
     );
 
     electronProcess

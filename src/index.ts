@@ -11,19 +11,19 @@ program
   .description('⚡️Start to dev your electron app.')
   .option(
     '--vite [root dir]',
-    'The flag indicates whether to open the vite server.'
+    'The flag indicates whether to open the vite server.',
   )
   .option(
     '--preload <file>',
-    "Electron preload filer relative to the main src. Won't be bundled."
+    "Electron preload filer relative to the main src. Won't be bundled.",
   )
   .option(
     '--esbuild-config-file <file>',
-    'Custom config js file to use with esbuild'
+    'Custom config js file to use with esbuild',
   )
   .option(
     '--esm',
-    'Use ESM instead of CJS for the main process. Default is CJS.'
+    'Use ESM instead of CJS for the main process. Default is CJS.',
   )
   .option('--clean-cache', 'Clean build cache.')
   .action(
@@ -35,7 +35,7 @@ program
         cleanCache: boolean;
         esbuildConfigFile: string;
         esm: boolean;
-      }
+      },
     ) => {
       const withVite = !!options.vite;
       let viteRootPath: string | undefined;
@@ -56,7 +56,7 @@ program
         esbuildConfigFile: options.esbuildConfigFile,
         mainProcessEsm: options.esm,
       });
-    }
+    },
   );
 
 program
@@ -64,20 +64,20 @@ program
   .description('Build your Electron main process code in main src.')
   .option(
     '--preload <file>',
-    "Electron preload script path relative to the main src. Won't be bundled."
+    "Electron preload script path relative to the main src. Won't be bundled.",
   )
   .option(
     '--esbuild-config-file <file>',
-    'Custom config js file to use with esbuild'
+    'Custom config js file to use with esbuild',
   )
   .option(
     '--esm',
-    'Use ESM instead of CJS for the main process. Default is CJS.'
+    'Use ESM instead of CJS for the main process. Default is CJS.',
   )
   .action(
     async (
       entryFile: string | undefined,
-      options: { preload: string; esbuildConfigFile: string; esm: boolean }
+      options: { preload: string; esbuildConfigFile: string; esm: boolean },
     ) => {
       await runBuild({
         preloadScript: options.preload,
@@ -85,7 +85,7 @@ program
         esbuildConfigFile: options.esbuildConfigFile,
         mainProcessEsm: options.esm,
       });
-    }
+    },
   );
 
 program.command('clean').action(clean);

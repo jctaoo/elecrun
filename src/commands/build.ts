@@ -37,7 +37,7 @@ export async function runBuild({
   const entryScriptPath = await findPathOrExit(
     entry,
     defaultEntryList,
-    cannotFoundEntryScriptOrViteRootPath(process.cwd())
+    cannotFoundEntryScriptOrViteRootPath(process.cwd()),
   );
 
   await runESBuildForMainProcess(
@@ -56,7 +56,7 @@ export async function runBuild({
       const tsconfigPath = await writeMainTSConfig();
       notFoundTSConfig(tsconfigPath);
       return tsconfigPath;
-    }
+    },
   );
 
   // TODO print some useful information when build finished.

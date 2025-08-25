@@ -17,7 +17,7 @@ import { exists } from './';
 export async function findPathOrExit(
   specificPath: string | undefined,
   defaultPaths: string[],
-  notFoundMessage: string
+  notFoundMessage: string,
 ): Promise<string> {
   // TODO 也许可以在这里校验是否存在
   // 但是不应该在这里做太多事情，也许用户有其他 hack 将失效？？

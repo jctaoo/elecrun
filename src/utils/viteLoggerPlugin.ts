@@ -14,7 +14,7 @@ export function LoggerPlugin(): Plugin {
         console.log(
           yellow(consoleViteMessagePrefix),
           yellow('hmr update'),
-          gray(path)
+          gray(path),
         );
       }
       return ctx.modules;

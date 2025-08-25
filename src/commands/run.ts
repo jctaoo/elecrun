@@ -69,7 +69,7 @@ export async function run(options: {
     const viteRootPath = await findPathOrExit(
       viteRoot,
       defaultRootList,
-      cannotFoundEntryScriptOrViteRootPath(process.cwd())
+      cannotFoundEntryScriptOrViteRootPath(process.cwd()),
     );
 
     await startViteServer({
@@ -93,7 +93,7 @@ export async function run(options: {
   const entryScriptPath = await findPathOrExit(
     entry,
     defaultEntryList,
-    cannotFoundEntryScriptOrViteRootPath(process.cwd())
+    cannotFoundEntryScriptOrViteRootPath(process.cwd()),
   );
 
   await runESBuildForMainProcess(
@@ -112,6 +112,6 @@ export async function run(options: {
       const tsconfigPath = await writeMainTSConfig();
       notFoundTSConfig(tsconfigPath);
       return tsconfigPath;
-    }
+    },
   );
 }

@@ -22,7 +22,7 @@ function formatDiagnosticsMessage(errors: CompileError[]): string {
 
   const res =
     magentaBright(
-      `${consoleMessagePrefix} Some typescript compilation errors occurred:`
+      `${consoleMessagePrefix} Some typescript compilation errors occurred:`,
     ) +
     '\n' +
     diagnosticDetail +

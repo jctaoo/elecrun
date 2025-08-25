@@ -7,7 +7,7 @@ export const removeJunkTransformOptions: stream.TransformOptions = {
     // Example: 2018-08-10 22:48:42.866 Electron[90311:4883863] *** WARNING: Textured window <AtomNSWindow: 0x7fb75f68a770>
     if (
       /\d+-\d+-\d+ \d+:\d+:\d+\.\d+ Electron(?: Helper)?\[\d+:\d+] /.test(
-        source
+        source,
       )
     ) {
       return false;

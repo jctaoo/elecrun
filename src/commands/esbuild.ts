@@ -47,7 +47,7 @@ async function findExternal(): Promise<string[]> {
   // find node_modules
   if (await exists(PathManager.shard.nodeModulesPath)) {
     const children = await fs.promises.readdir(
-      PathManager.shard.nodeModulesPath
+      PathManager.shard.nodeModulesPath,
     );
     for (const child of children) {
       externals.add(child);
@@ -59,7 +59,7 @@ async function findExternal(): Promise<string[]> {
 
 /** When provided with a filename, loads the esbuild js config from the file as a default export */
 export const loadESBuildConfigFromFile = async (
-  file?: string
+  file?: string,
 ): Promise<Partial<BuildOptions>> => {
   // No file provided
   if (!file) return {};
@@ -103,7 +103,7 @@ const writeOutDirPackageJson = async (esm: boolean) => {
   };
   await fs.promises.writeFile(
     packageJsonPath,
-    JSON.stringify(packageJson, null, 2)
+    JSON.stringify(packageJson, null, 2),
   );
 };
 
@@ -112,7 +112,7 @@ export const runESBuildForMainProcess: MainCommand = async (
   reportError,
   _buildStart,
   buildComplete,
-  notFoundTSConfig
+  notFoundTSConfig,
 ) => {
   const esbuild = await findESBuildForProject();
 
@@ -134,7 +134,7 @@ export const runESBuildForMainProcess: MainCommand = async (
     }
     const preloadScriptPath = path.join(
       PathManager.shard.mainPath,
-      preloadScript
+      preloadScript,
     );
     if (await exists(preloadScriptPath)) {
       // entryPoints.push(preloadScriptPath);

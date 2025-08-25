@@ -12,5 +12,5 @@ export type MainCommand = (
   reportError: (...errs: CompileError[]) => void,
   buildStart: () => void,
   buildComplete: (dir: string, count: number) => void,
-  notFoundTSConfig: () => Promise<string>
+  notFoundTSConfig: () => Promise<string>,
 ) => Promise<void>;

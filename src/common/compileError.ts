@@ -36,14 +36,14 @@ export function formatCompileError(error: CompileError): string {
     os.EOL +
     repeatString(
       ' ',
-      error.location.column + `${error.location.line}`.length + 1 + 1
+      error.location.column + `${error.location.line}`.length + 1 + 1,
     ) +
     red(repeatString('~', error.location.length)) +
     repeatString(
       ' ',
       error.location.lineText.length -
         error.location.column -
-        error.location.length
+        error.location.length,
     );
 
   return `${pathMessage} - ${categoryMessage} ${error.message} ${os.EOL} ${code}`;

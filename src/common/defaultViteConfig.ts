@@ -25,7 +25,7 @@ export const writeDefaultViteConfig = async (root: string): Promise<string> => {
   });
   const filePath = path.join(
     PathManager.shard.defaultViteConfigDir,
-    'vite.config.ts'
+    'vite.config.ts',
   );
   await fs.promises.writeFile(filePath, defaultViteConfig(root));
   return filePath;
