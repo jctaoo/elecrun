@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { PathManager } from './path-manager';
+import { PathManager } from './pathManager';
 
 export const defaultViteConfig = (root: string): string => `
 import { defineConfig } from "vite";

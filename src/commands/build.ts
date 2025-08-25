@@ -7,7 +7,7 @@ import {
   startMessage,
   writeMainTSConfig,
 } from '../common';
-import { findPathOrExit } from '../utils/find-paths-or-exit';
+import { findPathOrExit } from '../utils/findPathsOrExit';
 
 import { runESBuildForMainProcess } from './esbuild';
 

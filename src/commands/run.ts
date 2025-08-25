@@ -8,11 +8,11 @@ import {
 } from '../common';
 import { finishMessage, startMessage } from '../common';
 import { prompt } from '../common/prompt';
-import { findPathOrExit } from '../utils/find-paths-or-exit';
+import { findPathOrExit } from '../utils/findPathsOrExit';
 
 import { runESBuildForMainProcess } from './esbuild';
-import { startElectron } from './run-electron';
-import { startViteServer } from './run-vite';
+import { startElectron } from './runElectron';
+import { startViteServer } from './runVite';
 
 function reportError(...errors: CompileError[]) {
   diagnose(...errors);

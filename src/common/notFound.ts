@@ -5,7 +5,7 @@ import {
   cannotFoundPackageJsonMessage,
   cannotFoundTSConfigMessage,
   cannotFoundViteConfigMessage,
-} from './logger-meta';
+} from './loggerMeta';
 
 export function notFoundTSConfig(writePath: string) {
   console.warn(cannotFoundTSConfigMessage(writePath));

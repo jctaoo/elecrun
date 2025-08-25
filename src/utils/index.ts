@@ -1,6 +1,6 @@
-export { repeatString } from './repest-string';
-export { LoggerPlugin } from './vite-logger-plugin';
-export { removeJunkTransformOptions } from './remove-junk';
+export { repeatString } from './repestString';
+export { LoggerPlugin } from './viteLoggerPlugin';
+export { removeJunkTransformOptions } from './removeJunk';
 export { delay } from './delay';
 export * from './fs';
-export * from './read-json';
+export * from './readJson';

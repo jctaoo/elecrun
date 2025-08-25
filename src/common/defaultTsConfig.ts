@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import path from 'path';
 
-import { PathManager } from './path-manager';
+import { PathManager } from './pathManager';
 
 export const defaultBaseTSConfig = {
   compilerOptions: {

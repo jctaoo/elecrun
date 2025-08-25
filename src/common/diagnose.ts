@@ -2,8 +2,8 @@ import os from 'os';
 
 import { magentaBright } from 'colorette';
 
-import { CompileError, formatCompileError } from './compile-error';
-import { consoleMessagePrefix } from './logger-meta';
+import { CompileError, formatCompileError } from './compileError';
+import { consoleMessagePrefix } from './loggerMeta';
 
 function formatDiagnosticsMessage(errors: CompileError[]): string {
   const messages = errors.map((e) => formatCompileError(e));

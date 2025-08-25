@@ -1,1 +1,1 @@
-export { MainCommand } from './main-command';
+export { MainCommand } from './mainCommand';
