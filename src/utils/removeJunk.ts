@@ -10,17 +10,17 @@ export const removeJunkTransformOptions: stream.TransformOptions = {
         source,
       )
     ) {
-      done()
+      done();
       return;
     }
     // Example: [90789:0810/225804.894349:ERROR:CONSOLE(105)] "Uncaught (in promise) Error: Could not instantiate: ProductRegistryImpl.Registry", source: chrome-devtools://devtools/bundled/inspector.js (105)
     if (/\[\d+:\d+\/|\d+\.\d+:ERROR:CONSOLE\(\d+\)\]/.test(source)) {
-      done()
+      done();
       return;
     }
     // Example: ALSA lib confmisc.c:767:(parse_card) cannot find card '0'
     if (/ALSA lib [a-z]+\.c:\d+:\([a-z_]+\)/.test(source)) {
-      done()
+      done();
       return;
     }
     done(null, chunk);
