@@ -9,7 +9,7 @@ import { delay } from '../../src/utils';
 const COUNT = 5;
 
 describe('test run electron', () => {
-  it('should run electron correctly synchronously', async function () {
+  it('should run electron correctly synchronously and stop correctly', async function () {
     const processList: Array<ChildProcess> = [];
 
     let stop = () => {};
@@ -28,10 +28,10 @@ describe('test run electron', () => {
       }
     }
 
-    stop();
+    await stop();
   });
 
-  it('should run electron correctly concurrently', async function () {
+  it('should run electron correctly concurrently and stop correctly', async function () {
     const processList: Array<ChildProcess> = [];
     expect.assertions(5);
 
@@ -51,7 +51,7 @@ describe('test run electron', () => {
               }
             }
 
-            stop();
+            await stop();
             resolve();
           }
         });

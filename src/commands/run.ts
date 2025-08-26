@@ -24,12 +24,10 @@ function buildStart() {
 
 // =============== run electron start ===============
 
-let stopElectron: () => void = () => {};
 let stopPromptToRunElectron: () => void = () => {};
 
 async function runElectron(dir: string) {
-  stopElectron();
-  [, stopElectron] = await startElectron({ path: dir });
+  void await startElectron({ path: dir });
 }
 
 async function buildComplete(dir: string, count: number) {

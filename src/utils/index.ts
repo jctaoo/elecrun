@@ -4,3 +4,4 @@ export { removeJunkTransformOptions } from './removeJunk';
 export { delay } from './delay';
 export * from './fs';
 export * from './readJson';
+export * from './childProcess';

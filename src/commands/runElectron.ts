@@ -4,9 +4,9 @@ import * as stream from 'stream';
 
 import { gray } from 'colorette';
 
-import { removeJunkTransformOptions } from '../utils';
+import { removeJunkTransformOptions, terminateChild } from '../utils';
 
-const stopList: Array<() => void> = [];
+const stopList: Array<() => Promise<void>> = [];
 let exitByScripts = false;
 
 export async function startElectron({
@@ -15,9 +15,9 @@ export async function startElectron({
 }: {
   path?: string;
   silent?: boolean;
-}): Promise<[ChildProcess, () => void]> {
+}): Promise<[ChildProcess, () => Promise<void>]> {
   for (const stop of stopList) {
-    stop();
+    await stop();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -37,10 +37,14 @@ export async function startElectron({
 
   function createStop() {
     let called = false;
-    return () => {
-      if (!called && electronProcess) {
+    let isStopping = false;
+    return async () => {
+      if (isStopping) return;
+
+      if (!called && electronProcess && !isStopping) {
+        isStopping = true;
         electronProcess.removeAllListeners();
-        process.kill(electronProcess.pid!);
+        await terminateChild(electronProcess);
         exitByScripts = true;
       }
       called = true;
