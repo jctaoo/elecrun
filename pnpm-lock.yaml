@@ -123,6 +123,16 @@ importers:
         specifier: 7.1.3
         version: 7.1.3(@types/node@24.3.0)
 
+  fixtures/exit-sig:
+    dependencies:
+      electron:
+        specifier: 37.3.1
+        version: 37.3.1
+    devDependencies:
+      elecrun:
+        specifier: workspace:*
+        version: link:../..
+
   fixtures/js-simple:
     dependencies:
       electron:

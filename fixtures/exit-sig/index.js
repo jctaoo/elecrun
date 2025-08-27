@@ -14,10 +14,9 @@ process.on('exit', () => {
   console.log('exit signal received');
 });
 
-// 监听 SIGTERM 信号 (来自 process.kill)
-process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+app.on("before-quit", () => {
+  console.log("before-quit signal received");
+});
 
-// 监听 SIGINT 信号 (来自 Ctrl+C)
-process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 
 app.whenReady().then(createWindow);
