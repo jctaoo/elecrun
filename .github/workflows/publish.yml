@@ -47,17 +47,25 @@ jobs:
         run: |
           cp package.json package.json.bak
 
-          node -e "
-          const fs = require('fs');
-          const pkg = JSON.parse(fs.readFileSync('package.json','utf8'));
-          const owner = process.env.GITHUB_REPOSITORY_OWNER;
-          pkg.name = `@${owner}/elecrun`;
-          // 指定发布仓库，双保险
-          pkg.publishConfig = { registry: 'https://npm.pkg.github.com' };
-          fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
-          "
+          node -e '
+          const fs = require("fs");
+          const owner = process.env.GITHUB_REPOSITORY_OWNER || "";
+          if (!owner) {
+            console.error("GITHUB_REPOSITORY_OWNER is empty.");
+            process.exit(1);
+          }
+          const repo = process.env.GITHUB_REPOSITORY; // e.g. jctaoo/elecrun
+          const pkg = JSON.parse(fs.readFileSync("package.json","utf8"));
+
+          pkg.name = "@" + owner + "/elecrun";
+          pkg.repository = { type: "git", url: "git+https://github.com/" + repo + ".git" };
+
+          pkg.publishConfig = { registry: "https://npm.pkg.github.com" };
+
+          fs.writeFileSync("package.json", JSON.stringify(pkg, null, 2));
+          '
 
       - name: Publish to GitHub Packages
-        run: npm publish
+        run: npm publish --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
