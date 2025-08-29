@@ -216,3 +216,18 @@ elecrun --vite --preload preload.ts
 ### 清理输出
 
 运行 `elecrun clean` 来清理 `elecrun` 产生的输出
+
+## 发布
+
+当创建 GitHub Release 时，GitHub Actions 会自动处理发布。
+
+- 触发：Release created → 运行 `.github/workflows/publish.yml`。
+- 流程：检出、安装、构建，随后执行 `npm publish` 到 GitHub Packages。
+
+发布步骤：
+
+1. 使用 standard-version 提升版本（`pnpm version` 或 `pnpm version:patch|minor|major`）。
+2. 推送提交与 tag。
+3. 在 GitHub 上为新 tag 创建 Release；工作流会自动发布。
+
+参考：[Publish 工作流](https://github.com/jctaoo/elecrun/blob/main/.github/workflows/publish.yml) · [CI 工作流](https://github.com/jctaoo/elecrun/blob/main/.github/workflows/CI.yml)

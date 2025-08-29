@@ -218,3 +218,19 @@ The build phase is almost the same as the development phase (also including all 
 ### clean output
 
 run `elecrun clean` to easily clean output by `elecrun`
+
+## Release & Publish
+
+Publishing is automated by GitHub Actions.
+
+- Trigger: creating a GitHub Release (event type: created) runs the workflow at `.github/workflows/publish.yml`.
+- What it does: checks out the repo, installs deps, builds, then runs `npm publish` to GitHub Packages.
+
+How to publish a new version:
+
+1. Bump version and generate changelog using standard-version:
+   - `pnpm version` (interactive) or `pnpm version:major | version:minor | version:patch`
+2. Push commits and tags to GitHub.
+3. Create a GitHub Release for the new tag. The publish workflow will build and publish automatically.
+
+References: [Publish workflow](https://github.com/jctaoo/elecrun/blob/main/.github/workflows/publish.yml) · [CI workflow](https://github.com/jctaoo/elecrun/blob/main/.github/workflows/CI.yml)

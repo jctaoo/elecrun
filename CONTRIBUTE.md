@@ -92,7 +92,14 @@ To add new tests:
 
 ## Publishing
 
-The project uses `standard-version` for automated versioning and changelog generation. The `prepublishOnly` script ensures all tests pass before publishing.
+Publishing is automated by GitHub Actions and runs when a GitHub Release is created. Do not run `npm publish` locally.
+
+How to publish a new version:
+
+1. Bump version and generate changelog with standard-version:
+   - `pnpm version` or `pnpm version:major | version:minor | version:patch`
+2. Push commits and tags to GitHub.
+3. Create a GitHub Release for the new tag. The workflow at `.github/workflows/publish.yml` will build and run `npm publish` to GitHub Packages.
 
 ## Getting Help
 
