@@ -21,7 +21,7 @@ jobs:
       - uses: actions/cache@v4
         id: cache
         with:
-          path: '**/**/node_modules'
+          path: ~/.pnpm-store
           key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       # Setup .npmrc to use GitHub Packages
@@ -42,6 +42,20 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+      - name: Prepare package.json for GitHub Packages
+        run: |
+          cp package.json package.json.bak
+
+          node -e "
+          const fs = require('fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json','utf8'));
+          const owner = process.env.GITHUB_REPOSITORY_OWNER;
+          pkg.name = `@${owner}/elecrun`;
+          // 指定发布仓库，双保险
+          pkg.publishConfig = { registry: 'https://npm.pkg.github.com' };
+          fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+          "
 
       - name: Publish to GitHub Packages
         run: npm publish

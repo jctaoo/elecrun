@@ -27,7 +27,7 @@ jobs:
       - uses: actions/cache@v4
         id: cache
         with:
-          path: '**/**/node_modules'
+          path: ~/.pnpm-store
           key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - uses: actions/setup-node@v4
