@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * correct syntax in runElectron function and ensure proper export in utils index ([3b6117a](https://github.com/jctaoo/elecrun/commit/3b6117ad6c036e1882d3524962b4b755cf1a5292))
+* Fix repl problem in bin file (Only allowed publish package in CI)
 
 ### [2.4.6](https://github.com/jctaoo/elecrun/compare/v2.4.5...v2.4.6) (2025-08-25)
 
