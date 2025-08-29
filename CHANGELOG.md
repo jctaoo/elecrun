@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.7](https://github.com/jctaoo/elecrun/compare/v2.4.6...v2.4.7) (2025-08-29)
+
+
+### Features
+
+* add dependencies for exit-sig fixture and update signal handling to include before-quit event ([584692f](https://github.com/jctaoo/elecrun/commit/584692f773da33f61c9759a056f19325645e87be))
+* add exit-sig fixture with basic Electron app structure, including HTML, JavaScript for window creation, and graceful shutdown handling ([e876f10](https://github.com/jctaoo/elecrun/commit/e876f1002f7c701d66978ce02d13516f63cdadda))
+
+
+### Bug Fixes
+
+* correct syntax in runElectron function and ensure proper export in utils index ([3b6117a](https://github.com/jctaoo/elecrun/commit/3b6117ad6c036e1882d3524962b4b755cf1a5292))
+* Fix repl problem in bin file (Only allowed publish package in CI)
+
 ### [2.4.6](https://github.com/jctaoo/elecrun/compare/v2.4.5...v2.4.6) (2025-08-25)
 
 

@@ -27,7 +27,7 @@ function buildStart() {
 let stopPromptToRunElectron: () => void = () => {};
 
 async function runElectron(dir: string) {
-  void await startElectron({ path: dir });
+  void (await startElectron({ path: dir }));
 }
 
 async function buildComplete(dir: string, count: number) {
