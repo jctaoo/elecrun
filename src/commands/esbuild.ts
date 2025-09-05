@@ -98,9 +98,27 @@ const findESBuildForProject = async () => {
 
 const writeOutDirPackageJson = async (esm: boolean) => {
   const packageJsonPath = PathManager.shard.devOutDirPackageJson;
-  const packageJson = {
+  
+  // Read user's project package.json to get the project name
+  let projectName: string | null = null;
+  try {
+    const userPackageJson = await readJson(PathManager.shard.packageJsonPath);
+    if (userPackageJson.name) {
+      projectName = userPackageJson.name;
+    }
+  } catch (error) {
+    // If we can't read the user's package.json
+    console.error('Could not read user\'s package.json at ', PathManager.shard.packageJsonPath);
+    console.error(error);
+  }
+  
+  const packageJson: Record<string, string> = {
     type: esm ? 'module' : 'commonjs',
   };
+  if (projectName) {
+    packageJson.name = projectName;
+  }
+
   await fs.promises.writeFile(
     packageJsonPath,
     JSON.stringify(packageJson, null, 2),
