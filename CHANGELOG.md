@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.8](https://github.com/jctaoo/elecrun/compare/v2.4.7...v2.4.8) (2025-09-05)
+
+
+### Features
+
+* read project name from user's package.json and include it in the output package.json ([9c3b336](https://github.com/jctaoo/elecrun/commit/9c3b336555996ba26728b7e8078f5984a7ab466c))
+
 ### [2.4.7](https://github.com/jctaoo/elecrun/compare/v2.4.6...v2.4.7) (2025-08-29)
 
 

@@ -37,3 +37,6 @@ docs/dist
 # Yarn PnP files should be committed (don’t ignore)
 !.pnp.cjs
 !.pnp.loader.mjs
+
+# claude code
+.claude/*
